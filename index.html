@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Raphaël Blanzat — Portfolio</title>
+
+    <style>
+        :root {
+            --bg: #080b12;
+            --bg-secondary: #0d111a;
+            --card: rgba(17, 23, 35, 0.78);
+            --card-solid: #111723;
+            --border: rgba(255, 255, 255, 0.09);
+
+            --text: #f5f7fb;
+            --text-secondary: #aab3c3;
+            --text-muted: #737d90;
+
+            --accent: #6c63ff;
+            --accent-light: #8b85ff;
+            --accent-dark: #5048d9;
+
+            --max-width: 1180px;
+            --radius: 22px;
+
+            --shadow:
+                0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(108, 99, 255, 0.10),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(
+                calc(100% - 40px),
+                var(--max-width)
+            );
+
+            margin: 0 auto;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            z-index: 1000;
+
+            background:
+                rgba(8, 11, 18, 0.78);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-container {
+            width: min(
+                calc(100% - 40px),
+                var(--max-width)
+            );
+
+            min-height: 76px;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+
+            transition:
+                color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 110px 0;
+        }
+
+        section:first-of-type {
+            padding-top: 150px;
+        }
+
+        .section-title {
+            max-width: 760px;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            display: inline-block;
+
+            margin-bottom: 12px;
+
+            color: var(--accent-light);
+
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section-title h2 {
+            margin-bottom: 16px;
+
+            font-size: clamp(
+                2rem,
+                4vw,
+                3rem
+            );
+
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 680px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 760px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(80px, 180px)
+                minmax(0, 1fr)
+                minmax(320px, 430px);
+
+            gap: 42px;
+
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border:
+                3px solid
+                rgba(139, 133, 255, 0.65);
+
+            box-shadow:
+                0 0 0 8px
+                rgba(108, 99, 255, 0.08),
+                0 25px 60px
+                rgba(0, 0, 0, 0.45);
+
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .hero-content {
+            min-width: 0;
+        }
+
+        .hero-content .eyebrow {
+            display: inline-block;
+
+            margin-bottom: 16px;
+
+            color: var(--accent-light);
+
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+
+            font-size: clamp(
+                3rem,
+                6vw,
+                5.6rem
+            );
+
+            line-height: 0.98;
+            letter-spacing: -0.065em;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--accent-light);
+        }
+
+        .hero-description {
+            max-width: 700px;
+
+            color: var(--text-secondary);
+
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding:
+                0 20px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-size: 0.9rem;
+            font-weight: 700;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: var(--accent-dark);
+        }
+
+        .button-secondary {
+            border:
+                1px solid
+                var(--border);
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            border-color:
+                rgba(139, 133, 255, 0.35);
+
+            background:
+                rgba(108, 99, 255, 0.10);
+        }
+
+        /* =========================
+           CV
+        ========================= */
+
+        .cv-card {
+            overflow: visible;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(108, 99, 255, 0.18),
+                    rgba(255, 255, 255, 0.025)
+                );
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .cv-card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(139, 133, 255, 0.35);
+        }
+
+        .cv-preview {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: flex-start;
+
+            position: relative;
+
+            text-decoration: none;
+        }
+
+        .cv-preview img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            object-fit: contain;
+        }
+
+        .cv-preview span {
+            display: block;
+
+            margin: 18px 0 24px;
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            background: var(--accent);
+            color: white;
+
+            font-size: 0.9rem;
+            font-weight: 700;
+
+            transition:
+                background 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .cv-card:hover .cv-preview span {
+            background: var(--accent-dark);
+
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: var(--radius);
+
+            background:
+                var(--card);
+
+            box-shadow: var(--shadow);
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.25fr)
+                minmax(300px, 0.75fr);
+
+            gap: 30px;
+        }
+
+        .about-card {
+            padding: 34px;
+        }
+
+        .about-card h3 {
+            margin-bottom: 22px;
+
+            font-size: 1.35rem;
+        }
+
+        .about-card p {
+            margin-bottom: 18px;
+
+            color: var(--text-secondary);
+        }
+
+        .about-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .info-card {
+            padding: 22px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 16px;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+        }
+
+        .info-card span {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: var(--text-muted);
+
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .info-card strong {
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .project-card {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.05fr)
+                minmax(320px, 0.95fr);
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: var(--radius);
+
+            background:
+                var(--card);
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(139, 133, 255, 0.28);
+        }
+
+        .project-content {
+            padding: 38px;
+        }
+
+        .project-status {
+            display: inline-block;
+
+            margin-bottom: 14px;
+
+            padding:
+                6px 10px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(108, 99, 255, 0.12);
+
+            color: var(--accent-light);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .project-content h3 {
+            margin-bottom: 8px;
+
+            font-size: 1.65rem;
+            letter-spacing: -0.03em;
+        }
+
+        .project-type {
+            margin-bottom: 22px;
+
+            color: var(--text-muted);
+
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .project-content p {
+            margin-bottom: 18px;
+
+            color: var(--text-secondary);
+        }
+
+        .project-content ul {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 9px 20px;
+
+            margin:
+                24px 0;
+
+            padding: 0;
+
+            list-style: none;
+        }
+
+        .project-content li {
+            position: relative;
+
+            padding-left: 18px;
+
+            color: var(--text-secondary);
+
+            font-size: 0.88rem;
+        }
+
+        .project-content li::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0.7em;
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding:
+                7px 10px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 8px;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            color: var(--text-muted);
+
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* =========================
+           PROJECT IMAGES
+        ========================= */
+
+        .project-image {
+            min-height: 360px;
+
+            padding: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(108, 99, 255, 0.18),
+                    rgba(255, 255, 255, 0.025)
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .project-gallery {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 14px;
+        }
+
+        .gallery-image {
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.10);
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(108, 99, 255, 0.14),
+                    rgba(255, 255, 255, 0.035)
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: var(--text-muted);
+
+            font-size: 0.8rem;
+
+            box-shadow:
+                inset 0 0 0 1px
+                rgba(255, 255, 255, 0.02),
+                0 12px 30px
+                rgba(0, 0, 0, 0.18);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.5s ease;
+        }
+
+        .project-card:hover .gallery-image img {
+            transform: scale(1.03);
+        }
+
+        .gallery-image span {
+            opacity: 0.8;
+        }
+
+        /* =========================
+           MOBILE / GOOGLE PLAY
+        ========================= */
+
+        .mobile-section {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 24px;
+        }
+
+        .mobile-card {
+            padding: 32px;
+        }
+
+        .mobile-card h3 {
+            margin-bottom: 14px;
+
+            font-size: 1.35rem;
+        }
+
+        .mobile-card p {
+            margin-bottom: 20px;
+
+            color: var(--text-secondary);
+        }
+
+        .mobile-list {
+            display: grid;
+
+            gap: 10px;
+
+            margin-bottom: 24px;
+
+            padding: 0;
+
+            list-style: none;
+        }
+
+        .mobile-list li {
+            position: relative;
+
+            padding-left: 18px;
+
+            color: var(--text-secondary);
+
+            font-size: 0.9rem;
+        }
+
+        .mobile-list li::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0.7em;
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--accent);
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 24px;
+        }
+
+        .skills-card {
+            padding: 32px;
+        }
+
+        .skills-card h3 {
+            margin-bottom: 20px;
+
+            font-size: 1.2rem;
+        }
+
+        .skills-list {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .skill {
+            padding:
+                9px 13px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            color: var(--text-secondary);
+
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-card {
+            padding: 42px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(108, 99, 255, 0.15),
+                    transparent 60%
+                ),
+                var(--card);
+        }
+
+        .contact-card h2 {
+            margin-bottom: 14px;
+
+            font-size: clamp(
+                2rem,
+                4vw,
+                3rem
+            );
+
+            letter-spacing: -0.04em;
+        }
+
+        .contact-card p {
+            max-width: 620px;
+
+            margin:
+                0 auto 26px;
+
+            color: var(--text-secondary);
+        }
+
+        .contact-links {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding:
+                40px 0;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+            color: var(--text-muted);
+
+            text-align: center;
+
+            font-size: 0.82rem;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .hero-grid {
+                grid-template-columns:
+                    140px
+                    minmax(0, 1fr)
+                    minmax(280px, 360px);
+
+                gap: 30px;
+            }
+
+            .profile-photo {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        @media (max-width: 950px) {
+            .hero-grid {
+                grid-template-columns:
+                    130px
+                    minmax(0, 1fr);
+            }
+
+            .cv-card {
+                grid-column: 1 / -1;
+
+                max-width: 480px;
+
+                margin: 10px auto 0;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 700px) {
+            section {
+                padding: 80px 0;
+            }
+
+            section:first-of-type {
+                padding-top: 125px;
+            }
+
+            .container,
+            .nav-container {
+                width: min(
+                    calc(100% - 28px),
+                    var(--max-width)
+                );
+            }
+
+            .nav-container {
+                min-height: 68px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 0.78rem;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                gap: 26px;
+            }
+
+            .profile-photo {
+                margin: 0 auto;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-description {
+                font-size: 0.98rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .section-title {
+                margin-bottom: 34px;
+            }
+
+            .about-card,
+            .mobile-card,
+            .skills-card {
+                padding: 25px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-content {
+                padding: 25px;
+            }
+
+            .project-content ul {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image {
+                padding: 18px;
+            }
+
+            .gallery-image {
+                aspect-ratio: 16 / 9;
+            }
+
+            .mobile-section,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 32px 22px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:nth-child(2),
+            .nav-links a:nth-child(3) {
+                display: none;
+            }
+
+            .profile-photo {
+                width: 115px;
+                height: 115px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .project-image {
+                padding: 14px;
+            }
+
+            .project-gallery {
+                gap: 10px;
+            }
+
+            .gallery-image {
+                aspect-ratio: 16 / 9;
+
+                border-radius: 11px;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .contact-links .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+        <div class="nav-container">
+
+            <a href="#accueil" class="logo">
+                Blanzat Raphaël
+            </a>
+
+            <div class="nav-links">
+                <a href="#accueil">Accueil</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#projets">Projets</a>
+                <a href="#competences">Compétences</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         ACCUEIL
+    ========================= -->
+
+    <main id="accueil">
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-grid">
+
+                    <img
+                        src="images/photo.png"
+                        alt="Photo de Raphaël Blanzat"
+                        class="profile-photo"
+                        oncontextmenu="return false;"
+                    >
+
+                    <div class="hero-content">
+
+                        <span class="eyebrow">
+                            Étudiant en informatique
+                        </span>
+
+                        <h1>
+                            Raphaël <span>Blanzat</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            Étudiant en deuxième année de
+                            Bachelor Informatique à Montpellier Ynov Campus,
+                            je recherche un stage en développement.
+                            J'apprécie particulièrement le
+                            développement de jeux vidéo,
+                            qui me permet de travailler sur des projets
+                            mêlant programmation, logique et créativité.
+                            Je reste également ouvert aux différents domaines
+                            du développement informatique.
+                        </p>
+
+                        <div class="hero-actions">
+
+                            <a
+                                href="#projets"
+                                class="button button-primary"
+                            >
+                                Voir mes projets
+                            </a>
+
+                            <a
+                                href="#contact"
+                                class="button button-secondary"
+                            >
+                                Me contacter
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CV -->
+
+                    <div class="card cv-card">
+
+                        <a
+                            href="cv.pdf"
+                            class="cv-preview"
+                            target="_blank"
+                        >
+
+                            <img
+                                src="images/cv.png"
+                                alt="Aperçu du CV de Raphaël Blanzat"
+                            >
+
+                            <span>
+                                Voir mon CV
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PARCOURS
+        ========================= -->
+
+        <section id="parcours">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        Parcours
+                    </span>
+
+                    <h2>
+                        Mon parcours
+                    </h2>
+
+                    <p>
+                        Quelques informations sur ma formation,
+                        mes expériences et la direction que je souhaite
+                        donner à mon parcours professionnel.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="card about-card">
+
+                        <h3>
+                            À propos de moi
+                        </h3>
+
+                        <p>
+                            Je m'intéresse particulièrement à la création
+                            de projets interactifs et aux différentes étapes
+                            qui permettent de passer d'une idée à une
+                            réalisation fonctionnelle.
+                        </p>
+
+                        <p>
+                            Au fil de ma formation et de mes projets,
+                            j'ai eu l'occasion d'explorer différentes
+                            technologies et différentes façons de concevoir
+                            un projet. Cette pratique m'a permis de gagner
+                            progressivement en autonomie, de mieux comprendre
+                            la logique du développement et d'apprendre à
+                            avancer étape par étape face aux difficultés.
+                        </p>
+
+                        <p>
+                            Aujourd'hui, je souhaite continuer à élargir
+                            mes connaissances en découvrant de nouvelles
+                            méthodes de travail et en confrontant mes acquis
+                            à des projets et des problématiques différents.
+                        </p>
+
+                    </div>
+
+
+                    <div class="info-grid">
+
+                        <div class="info-card">
+                            <span>
+                                Formation
+                            </span>
+
+                            <strong>
+                                Bachelor Informatique
+                            </strong>
+                        </div>
+
+                        <div class="info-card">
+                            <span>
+                                Établissement
+                            </span>
+
+                            <strong>
+                                Montpellier Ynov Campus
+                            </strong>
+                        </div>
+
+                        <div class="info-card">
+                            <span>
+                                Niveau
+                            </span>
+
+                            <strong>
+                                Deuxième année
+                            </strong>
+                        </div>
+
+                        <div class="info-card">
+                            <span>
+                                Recherche
+                            </span>
+
+                            <strong>
+                                Stage en développement
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROJETS
+        ========================= -->
+
+        <section id="projets">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        Projets
+                    </span>
+
+                    <h2>
+                        Ce que je développe
+                    </h2>
+
+                    <p>
+                        Des projets personnels qui me permettent
+                        d'expérimenter, de tester mes idées et de construire
+                        des réalisations concrètes.
+                    </p>
+
+                </div>
+
+
+                <div class="projects">
+
+
+                    <!-- =========================
+                         PROJET 1
+                    ========================= -->
+
+                    <article class="project-card">
+
+                        <div class="project-content">
+
+                            <span class="project-status">
+                                Premier jeu
+                            </span>
+
+                            <h3>
+                                Jeu narratif à choix
+                            </h3>
+
+                            <div class="project-type">
+                                Projet personnel — Premier projet de jeu
+                            </div>
+
+                            <p>
+                                Il s'agit de mon tout premier jeu vidéo.
+                                Le joueur incarne un personnage et progresse
+                                dans une histoire à travers des textes,
+                                des images et différents choix.
+                            </p>
+
+                            <p>
+                                Le projet est fonctionnel et complet dans
+                                la version que j'ai développée. Il s'agit
+                                avant tout d'un projet personnel qui m'a
+                                permis d'explorer la logique de gameplay
+                                et la conception d'une expérience
+                                interactive.
+                            </p>
+
+                            <p>
+                                Ce projet ne sera pas publié. Il représente
+                                surtout une première étape dans mon
+                                apprentissage du développement de jeux.
+                            </p>
+
+
+                            <ul>
+
+                                <li>
+                                    Système de choix
+                                </li>
+
+                                <li>
+                                    Progression narrative
+                                </li>
+
+                                <li>
+                                    Textes et illustrations
+                                </li>
+
+                                <li>
+                                    Logique interactive
+                                </li>
+
+                                <li>
+                                    Création de gameplay
+                                </li>
+
+                                <li>
+                                    Premier projet de jeu
+                                </li>
+
+                            </ul>
+
+
+                            <div class="tags">
+
+                                <span class="tag">
+                                    Godot
+                                </span>
+
+                                <span class="tag">
+                                    GDScript
+                                </span>
+
+                                <span class="tag">
+                                    Game Development
+                                </span>
+
+                                <span class="tag">
+                                    Prototype
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- GALERIE -->
+
+                        <div class="project-image">
+
+                            <div class="project-gallery">
+
+                                <div class="gallery-image">
+
+                                    <img
+                                        src="images/jeu1/image1.jpg"
+                                        alt="Capture du jeu narratif à choix"
+                                    >
+
+                                </div>
+
+
+                                <div class="gallery-image">
+
+                                    <img
+                                        src="images/jeu1/image2.jpg"
+                                        alt="Capture du jeu narratif à choix"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =========================
+                         PROJET 2
+                    ========================= -->
+
+                    <article class="project-card">
+
+                        <div class="project-content">
+
+                            <span class="project-status">
+                                Projet principal
+                            </span>
+
+                            <h3>
+                                Energie Station
+                            </h3>
+
+                            <div class="project-type">
+                                Jeu mobile — Clicker
+                            </div>
+
+                            <p>
+                                Energie Station est un jeu mobile de type
+                                clicker développé avec Godot. Le joueur
+                                produit de l'énergie afin de développer
+                                progressivement son installation et de
+                                débloquer de nouvelles améliorations.
+                            </p>
+
+                            <p>
+                                Le projet comprend un système d'économie,
+                                plusieurs installations, des améliorations,
+                                une progression par paliers, une histoire
+                                évolutive ainsi qu'un système de sauvegarde
+                                avec production d'énergie hors-ligne.
+                            </p>
+
+
+                            <ul>
+
+                                <li>
+                                    Production d'énergie
+                                </li>
+
+                                <li>
+                                    Installations et améliorations
+                                </li>
+
+                                <li>
+                                    Système d'économie
+                                </li>
+
+                                <li>
+                                    Progression par paliers
+                                </li>
+
+                                <li>
+                                    Histoire évolutive
+                                </li>
+
+                                <li>
+                                    Sauvegarde hors-ligne
+                                </li>
+
+                            </ul>
+
+
+                            <div class="tags">
+
+                                <span class="tag">
+                                    Godot
+                                </span>
+
+                                <span class="tag">
+                                    GDScript
+                                </span>
+
+                                <span class="tag">
+                                    Android
+                                </span>
+
+                                <span class="tag">
+                                    Game Development
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- GALERIE -->
+
+                        <div class="project-image">
+
+                            <div class="project-gallery">
+
+                                <div class="gallery-image">
+
+                                    <img
+                                        src="images/jeu2/image1.jpg"
+                                        alt="Capture d'Energie Station"
+                                    >
+
+                                </div>
+
+                                <div class="gallery-image">
+
+                                    <img
+                                        src="images/jeu2/image2.jpg"
+                                        alt="Capture d'Energie Station"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MOBILE / GOOGLE PLAY
+        ========================= -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        Développement mobile
+                    </span>
+
+                    <h2>
+                        Jeux & publication
+                    </h2>
+
+                    <p>
+                        Une partie de mon expérience autour du développement
+                        et de la publication de jeux mobiles.
+                    </p>
+
+                </div>
+
+
+                <div class="mobile-section">
+
+                    <div class="card mobile-card">
+
+                        <h3>
+                            Développement Android
+                        </h3>
+
+                        <p>
+                            Je m'intéresse également aux différentes étapes
+                            qui permettent de passer d'un projet développé
+                            à une application utilisable sur Android.
+                        </p>
+
+                        <ul class="mobile-list">
+
+                            <li>
+                                Export et configuration Android
+                            </li>
+
+                            <li>
+                                Préparation d'une application
+                            </li>
+
+                            <li>
+                                Publication sur Google Play
+                            </li>
+
+                            <li>
+                                Tests et déploiement
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMPETENCES
+        ========================= -->
+
+        <section id="competences">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <span class="section-label">
+                        Compétences
+                    </span>
+
+                    <h2>
+                        Technologies & outils
+                    </h2>
+
+                    <p>
+                        Les technologies et outils que j'utilise
+                        dans mes projets et ma formation.
+                    </p>
+
+                </div>
+
+
+                <div class="skills-grid">
+
+                    <div class="card skills-card">
+
+                        <h3>
+                            Développement
+                        </h3>
+
+                        <div class="skills-list">
+
+                            <span class="skill">
+                                Python
+                            </span>
+
+                            <span class="skill">
+                                JavaScript
+                            </span>
+
+                            <span class="skill">
+                                React
+                            </span>
+
+                            <span class="skill">
+                                TypeScript
+                            </span>
+
+                            <span class="skill">
+                                SQL
+                            </span>
+
+                            <span class="skill">
+                                GDScript
+                            </span>
+
+                            <span class="skill">
+                                HTML
+                            </span>
+
+                            <span class="skill">
+                                CSS
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card skills-card">
+
+                        <h3>
+                            Outils & environnement
+                        </h3>
+
+                        <div class="skills-list">
+
+                            <span class="skill">
+                                Git
+                            </span>
+
+                            <span class="skill">
+                                GitHub
+                            </span>
+
+                            <span class="skill">
+                                Linux
+                            </span>
+
+                            <span class="skill">
+                                Windows
+                            </span>
+
+                            <span class="skill">
+                                Godot
+                            </span>
+
+                            <span class="skill">
+                                VS Code
+                            </span>
+
+                            <span class="skill">
+                                Android
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================= -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="card contact-card">
+
+                    <h2>
+                        À la recherche d'un stage
+                    </h2>
+
+                    <p>
+                        Je suis actuellement à la recherche d'un stage
+                        en développement informatique. N'hésitez pas
+                        à me contacter pour échanger autour d'une
+                        opportunité de stage.
+                    </p>
+
+                    <div class="contact-links">
+
+                        <a
+                            <a href="mailto:raphaelmarc.b@gmail.com"
+                            class="button button-primary"
+                        >
+                            Me contacter
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/raphael-blanzat-a46655437/"
+                            class="button button-secondary"
+                        >
+                            LinkedIn
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="container">
+
+            © 2026 Raphaël Blanzat — Portfolio
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
