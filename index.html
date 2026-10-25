@@ -2,12 +2,44 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Raphaël Blanzat — Portfolio</title>
+    <title>Raphaël Blanzat — Portfolio · Développeur de jeux</title>
+    <meta name="description" content="Portfolio de Raphaël Blanzat, étudiant en Bachelor Informatique à Montpellier Ynov Campus et développeur de jeux mobiles sous le nom Sylvarions Games. À la recherche d'un stage en développement.">
+    <meta name="author" content="Raphaël Blanzat">
+    <meta name="theme-color" content="#080b12">
+    <link rel="canonical" href="https://raphaelblanzat.github.io/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Raphaël Blanzat — Portfolio">
+    <meta property="og:description" content="Étudiant en informatique et développeur de jeux mobiles (Sylvarions Games). À la recherche d'un stage en développement.">
+    <meta property="og:url" content="https://raphaelblanzat.github.io/">
+    <meta property="og:image" content="https://raphaelblanzat.github.io/images/energie/jeu/menu.jpg">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="images/photo.jpg" type="image/jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/photo.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Raphaël Blanzat",
+        "url": "https://raphaelblanzat.github.io/",
+        "jobTitle": "Étudiant en informatique, développeur de jeux",
+        "alumniOf": "Montpellier Ynov Campus",
+        "sameAs": [
+            "https://github.com/raphaelblanzat",
+            "https://www.linkedin.com/in/raphael-blanzat-a46655437/",
+            "https://play.google.com/store/apps/dev?id=8042980519563523044"
+        ]
+    }
+    </script>
 
     <style>
         :root {
@@ -16,23 +48,32 @@
             --card: rgba(17, 23, 35, 0.78);
             --card-solid: #111723;
             --border: rgba(255, 255, 255, 0.09);
+            --border-strong: rgba(139, 133, 255, 0.35);
 
             --text: #f5f7fb;
             --text-secondary: #aab3c3;
-            --text-muted: #737d90;
+            --text-muted: #8a93a6;
 
             --accent: #6c63ff;
             --accent-light: #8b85ff;
             --accent-dark: #5048d9;
+            --accent-soft: rgba(108, 99, 255, 0.12);
+
+            --green: #34d399;
+            --amber: #fbbf24;
+            --sky: #38bdf8;
 
             --max-width: 1180px;
             --radius: 22px;
+            --nav-height: 72px;
 
-            --shadow:
-                0 20px 60px rgba(0, 0, 0, 0.35);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            --font-display: "Space Grotesk", Inter, -apple-system, "Segoe UI", sans-serif;
         }
 
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -40,27 +81,23 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height) + 16px);
         }
 
         body {
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(108, 99, 255, 0.10),
-                    transparent 30%
-                ),
+                radial-gradient(circle at 85% -5%, rgba(108, 99, 255, 0.16), transparent 35%),
+                radial-gradient(circle at -10% 40%, rgba(56, 189, 248, 0.06), transparent 30%),
                 var(--bg);
-
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.no-scroll {
+            overflow: hidden;
         }
 
         a {
@@ -69,15 +106,36 @@
 
         img {
             max-width: 100%;
+            display: block;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent-light);
+            outline-offset: 3px;
+            border-radius: 6px;
         }
 
         .container {
-            width: min(
-                calc(100% - 40px),
-                var(--max-width)
-            );
-
+            width: min(calc(100% - 40px), var(--max-width));
             margin: 0 auto;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 16px;
+            top: -60px;
+            z-index: 2000;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 16px;
         }
 
         /* =========================
@@ -86,64 +144,122 @@
 
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-
+            inset: 0 0 auto 0;
             z-index: 1000;
-
-            background:
-                rgba(8, 11, 18, 0.78);
-
+            background: rgba(8, 11, 18, 0.72);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
 
-            border-bottom:
-                1px solid
-                rgba(255, 255, 255, 0.06);
+        nav.scrolled {
+            border-bottom-color: rgba(255, 255, 255, 0.07);
+            background: rgba(8, 11, 18, 0.88);
         }
 
         .nav-container {
-            width: min(
-                calc(100% - 40px),
-                var(--max-width)
-            );
-
-            min-height: 76px;
+            width: min(calc(100% - 40px), var(--max-width));
+            min-height: var(--nav-height);
             margin: 0 auto;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             gap: 30px;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
-            font-size: 1rem;
-            font-weight: 800;
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
             letter-spacing: -0.02em;
+        }
+
+        .logo-mark {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            font-size: 0.85rem;
+            color: white;
+            box-shadow: 0 6px 18px rgba(108, 99, 255, 0.35);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 6px;
         }
 
         .nav-links a {
+            position: relative;
+            padding: 8px 12px;
+            border-radius: 10px;
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-
-            transition:
-                color 0.25s ease;
+            transition: color 0.25s ease, background 0.25s ease;
         }
 
         .nav-links a:hover {
             color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-links a.active {
+            color: var(--text);
+            background: var(--accent-soft);
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            display: block;
+            width: 18px;
+            height: 2px;
+            margin: 0 auto;
+            border-radius: 2px;
+            background: currentColor;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            content: "";
+        }
+
+        .nav-toggle span::before {
+            transform: translateY(-6px);
+        }
+
+        .nav-toggle span::after {
+            transform: translateY(4px);
+        }
+
+        .nav-toggle[aria-expanded="true"] span {
+            background: transparent;
+        }
+
+        .nav-toggle[aria-expanded="true"] span::before {
+            transform: translateY(0) rotate(45deg);
+        }
+
+        .nav-toggle[aria-expanded="true"] span::after {
+            transform: translateY(-2px) rotate(-45deg);
         }
 
         /* =========================
@@ -154,45 +270,43 @@
             padding: 110px 0;
         }
 
-        section:first-of-type {
-            padding-top: 150px;
-        }
-
         .section-title {
             max-width: 760px;
             margin-bottom: 50px;
         }
 
         .section-label {
-            display: inline-block;
-
-            margin-bottom: 12px;
-
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
             color: var(--accent-light);
-
             font-size: 0.78rem;
             font-weight: 800;
             letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
+        .section-label::before {
+            content: "";
+            width: 22px;
+            height: 2px;
+            border-radius: 2px;
+            background: currentColor;
+        }
+
         .section-title h2 {
             margin-bottom: 16px;
-
-            font-size: clamp(
-                2rem,
-                4vw,
-                3rem
-            );
-
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
             line-height: 1.1;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.035em;
         }
 
         .section-title p {
+            max-width: 680px;
             color: var(--text-secondary);
             font-size: 1rem;
-            max-width: 680px;
         }
 
         /* =========================
@@ -200,88 +314,104 @@
         ========================= */
 
         .hero {
-            min-height: 760px;
-
+            min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             align-items: center;
+            padding: calc(var(--nav-height) + 60px) 0 90px;
         }
 
         .hero-grid {
             display: grid;
-
-            grid-template-columns:
-                minmax(80px, 180px)
-                minmax(0, 1fr)
-                minmax(320px, 430px);
-
-            gap: 42px;
-
+            grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+            gap: 60px;
             align-items: center;
         }
 
+        .hero-identity {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
         .profile-photo {
-            width: 180px;
-            height: 180px;
-
+            width: 96px;
+            height: 96px;
+            flex-shrink: 0;
             border-radius: 50%;
-
             object-fit: cover;
-
-            border:
-                3px solid
-                rgba(139, 133, 255, 0.65);
-
+            border: 3px solid rgba(139, 133, 255, 0.65);
             box-shadow:
-                0 0 0 8px
-                rgba(108, 99, 255, 0.08),
-                0 25px 60px
-                rgba(0, 0, 0, 0.45);
-
+                0 0 0 7px rgba(108, 99, 255, 0.08),
+                0 20px 50px rgba(0, 0, 0, 0.45);
             user-select: none;
             -webkit-user-drag: none;
         }
 
-        .hero-content {
-            min-width: 0;
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 14px 7px 12px;
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            border-radius: 999px;
+            background: rgba(52, 211, 153, 0.08);
+            color: #a7f3d0;
+            font-size: 0.82rem;
+            font-weight: 700;
         }
 
-        .hero-content .eyebrow {
-            display: inline-block;
+        .pulse {
+            position: relative;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+        }
 
-            margin-bottom: 16px;
+        .pulse::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s ease-out infinite;
+        }
 
-            color: var(--accent-light);
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.7; }
+            to { transform: scale(2.8); opacity: 0; }
+        }
 
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+        .eyebrow {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         .hero h1 {
-            margin-bottom: 20px;
-
-            font-size: clamp(
-                3rem,
-                6vw,
-                5.6rem
-            );
-
+            margin-bottom: 24px;
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 5.8rem);
             line-height: 0.98;
-            letter-spacing: -0.065em;
+            letter-spacing: -0.05em;
         }
 
         .hero h1 span {
             display: block;
-            color: var(--accent-light);
+            background: linear-gradient(100deg, var(--accent-light) 10%, #c4b5fd 50%, var(--sky) 95%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero-description {
-            max-width: 700px;
-
+            max-width: 640px;
             color: var(--text-secondary);
-
-            font-size: 1.05rem;
+            font-size: 1.06rem;
             line-height: 1.8;
         }
 
@@ -289,32 +419,57 @@
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-
-            margin-top: 30px;
+            margin-top: 32px;
         }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px 40px;
+            margin-top: 44px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-stats strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.7rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-stats span {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .button {
             display: inline-flex;
-
             align-items: center;
             justify-content: center;
-
+            gap: 9px;
             min-height: 48px;
-
-            padding:
-                0 20px;
-
+            padding: 0 20px;
+            border: 1px solid transparent;
             border-radius: 12px;
-
-            text-decoration: none;
-
+            font: inherit;
             font-size: 0.9rem;
             font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
 
-            transition:
-                transform 0.25s ease,
-                background 0.25s ease,
-                border-color 0.25s ease;
+        .button svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
         }
 
         .button:hover {
@@ -324,29 +479,55 @@
         .button-primary {
             background: var(--accent);
             color: white;
+            box-shadow: 0 10px 28px rgba(108, 99, 255, 0.3);
         }
 
         .button-primary:hover {
             background: var(--accent-dark);
+            box-shadow: 0 14px 34px rgba(108, 99, 255, 0.4);
         }
 
         .button-secondary {
-            border:
-                1px solid
-                var(--border);
-
-            background:
-                rgba(255, 255, 255, 0.035);
-
+            border-color: var(--border);
+            background: rgba(255, 255, 255, 0.035);
             color: var(--text);
         }
 
         .button-secondary:hover {
-            border-color:
-                rgba(139, 133, 255, 0.35);
+            border-color: var(--border-strong);
+            background: var(--accent-soft);
+        }
 
-            background:
-                rgba(108, 99, 255, 0.10);
+        .button-play {
+            border-color: rgba(255, 255, 255, 0.14);
+            background: #000;
+            color: white;
+        }
+
+        .button-play:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .button-play .play-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.05;
+            text-align: left;
+        }
+
+        .button-play small {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .button-small {
+            min-height: 40px;
+            padding: 0 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
         }
 
         /* =========================
@@ -354,81 +535,51 @@
         ========================= */
 
         .cv-card {
-            overflow: visible;
-
-            border:
-                1px solid
-                var(--border);
-
+            position: relative;
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(108, 99, 255, 0.18),
-                    rgba(255, 255, 255, 0.025)
-                );
-
+            background: linear-gradient(145deg, rgba(108, 99, 255, 0.2), rgba(255, 255, 255, 0.025));
             box-shadow: var(--shadow);
-
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease;
+            transform: rotate(2deg);
+            transition: transform 0.4s ease, border-color 0.3s ease;
         }
 
         .cv-card:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(139, 133, 255, 0.35);
+            transform: rotate(0deg) translateY(-6px);
+            border-color: var(--border-strong);
         }
 
         .cv-preview {
-            width: 100%;
-
             display: flex;
             flex-direction: column;
-
             align-items: center;
-            justify-content: flex-start;
-
-            position: relative;
-
+            padding: 16px 16px 0;
             text-decoration: none;
         }
 
         .cv-preview img {
-            display: block;
-
             width: 100%;
             height: auto;
-
-            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
         }
 
         .cv-preview span {
-            display: block;
-
-            margin: 18px 0 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 18px 0 20px;
             padding: 12px 20px;
-
             border-radius: 10px;
-
             background: var(--accent);
             color: white;
-
             font-size: 0.9rem;
             font-weight: 700;
-
-            transition:
-                background 0.25s ease,
-                transform 0.25s ease;
+            transition: background 0.25s ease;
         }
 
         .cv-card:hover .cv-preview span {
             background: var(--accent-dark);
-
-            transform: translateY(-2px);
         }
 
         /* =========================
@@ -436,15 +587,9 @@
         ========================= */
 
         .card {
-            border:
-                1px solid
-                var(--border);
-
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-
-            background:
-                var(--card);
-
+            background: var(--card);
             box-shadow: var(--shadow);
         }
 
@@ -454,27 +599,21 @@
 
         .about-grid {
             display: grid;
-
-            grid-template-columns:
-                minmax(0, 1.25fr)
-                minmax(300px, 0.75fr);
-
+            grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
             gap: 30px;
         }
 
         .about-card {
-            padding: 34px;
+            padding: 36px;
         }
 
         .about-card h3 {
             margin-bottom: 22px;
-
             font-size: 1.35rem;
         }
 
         .about-card p {
             margin-bottom: 18px;
-
             color: var(--text-secondary);
         }
 
@@ -484,33 +623,47 @@
 
         .info-grid {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 14px;
         }
 
         .info-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             padding: 22px;
-
-            border:
-                1px solid
-                var(--border);
-
+            border: 1px solid var(--border);
             border-radius: 16px;
+            background: rgba(255, 255, 255, 0.025);
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
 
-            background:
-                rgba(255, 255, 255, 0.025);
+        .info-card:hover {
+            border-color: var(--border-strong);
+            background: rgba(108, 99, 255, 0.06);
+        }
+
+        .info-card .icon {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            background: var(--accent-soft);
+            color: var(--accent-light);
+        }
+
+        .info-card .icon svg {
+            width: 18px;
+            height: 18px;
         }
 
         .info-card span {
             display: block;
-
-            margin-bottom: 8px;
-
+            margin-bottom: 6px;
             color: var(--text-muted);
-
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -532,122 +685,120 @@
 
         .project-card {
             display: grid;
-
-            grid-template-columns:
-                minmax(0, 1.05fr)
-                minmax(320px, 0.95fr);
-
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
             overflow: hidden;
-
-            border:
-                1px solid
-                var(--border);
-
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-
-            background:
-                var(--card);
-
+            background: var(--card);
             box-shadow: var(--shadow);
-
-            transition:
-                transform 0.3s ease,
-                border-color 0.3s ease;
+            transition: border-color 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            border-color: rgba(139, 133, 255, 0.28);
+        }
 
-            border-color:
-                rgba(139, 133, 255, 0.28);
+        .project-card.reverse .project-content {
+            order: 2;
         }
 
         .project-content {
-            padding: 38px;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
         }
 
-        .project-status {
-            display: inline-block;
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
 
-            margin-bottom: 14px;
-
-            padding:
-                6px 10px;
-
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
             border-radius: 999px;
-
-            background:
-                rgba(108, 99, 255, 0.12);
-
+            background: var(--accent-soft);
             color: var(--accent-light);
-
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 800;
-
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
 
-        .project-content h3 {
-            margin-bottom: 8px;
+        .badge::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
 
-            font-size: 1.65rem;
+        .badge.live {
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--green);
+        }
+
+        .badge.soon {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--sky);
+        }
+
+        .badge.dev {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--amber);
+        }
+
+        .badge.proto {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+        }
+
+        .project-content h3 {
+            margin-bottom: 6px;
+            font-family: var(--font-display);
+            font-size: 1.8rem;
             letter-spacing: -0.03em;
         }
 
         .project-type {
             margin-bottom: 22px;
-
             color: var(--text-muted);
-
             font-size: 0.88rem;
             font-weight: 600;
         }
 
         .project-content p {
-            margin-bottom: 18px;
-
+            margin-bottom: 16px;
             color: var(--text-secondary);
         }
 
-        .project-content ul {
+        .feature-list {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 9px 20px;
-
-            margin:
-                24px 0;
-
-            padding: 0;
-
+            margin: 10px 0 26px;
             list-style: none;
         }
 
-        .project-content li {
+        .feature-list li {
             position: relative;
-
             padding-left: 18px;
-
             color: var(--text-secondary);
-
             font-size: 0.88rem;
         }
 
-        .project-content li::before {
+        .feature-list li::before {
             content: "";
-
             position: absolute;
-
             left: 0;
             top: 0.7em;
-
             width: 6px;
             height: 6px;
-
             border-radius: 50%;
-
             background: var(--accent);
         }
 
@@ -658,180 +809,454 @@
         }
 
         .tag {
-            padding:
-                7px 10px;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.08);
-
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
-
-            background:
-                rgba(255, 255, 255, 0.025);
-
+            background: rgba(255, 255, 255, 0.025);
             color: var(--text-muted);
-
             font-size: 0.75rem;
             font-weight: 700;
         }
 
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 28px;
+        }
+
         /* =========================
-           PROJECT IMAGES
+           GALLERY
         ========================= */
 
-        .project-image {
-            min-height: 360px;
-
-            padding: 22px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(108, 99, 255, 0.18),
-                    rgba(255, 255, 255, 0.025)
-                );
-
+        .project-media {
             display: flex;
-
             align-items: center;
-            justify-content: center;
-
-            overflow: hidden;
+            padding: 24px;
+            background: linear-gradient(145deg, rgba(108, 99, 255, 0.18), rgba(255, 255, 255, 0.025));
         }
 
         .project-gallery {
             width: 100%;
-
             display: grid;
-
-            grid-template-columns: 1fr;
-
             gap: 14px;
         }
 
         .gallery-image {
             position: relative;
-
             width: 100%;
-
             aspect-ratio: 16 / 9;
-
             overflow: hidden;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.10);
-
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 14px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(108, 99, 255, 0.14),
-                    rgba(255, 255, 255, 0.035)
-                );
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: var(--text-muted);
-
-            font-size: 0.8rem;
-
-            box-shadow:
-                inset 0 0 0 1px
-                rgba(255, 255, 255, 0.02),
-                0 12px 30px
-                rgba(0, 0, 0, 0.18);
+            background: var(--card-solid);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            cursor: zoom-in;
         }
 
         .gallery-image img {
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
-            transition:
-                transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
-        .project-card:hover .gallery-image img {
-            transform: scale(1.03);
+        .gallery-image:hover img {
+            transform: scale(1.04);
         }
 
-        .gallery-image span {
-            opacity: 0.8;
+        .gallery-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center / 28px no-repeat,
+                rgba(8, 11, 18, 0.45);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-image:hover::after,
+        .gallery-image:focus-visible::after {
+            opacity: 1;
         }
 
         /* =========================
-           MOBILE / GOOGLE PLAY
+           STUDIO / MES JEUX
         ========================= */
 
-        .mobile-section {
-            display: grid;
-
-            grid-template-columns:
-                1fr
-                1fr;
-
-            gap: 24px;
-        }
-
-        .mobile-card {
-            padding: 32px;
-        }
-
-        .mobile-card h3 {
-            margin-bottom: 14px;
-
-            font-size: 1.35rem;
-        }
-
-        .mobile-card p {
-            margin-bottom: 20px;
-
-            color: var(--text-secondary);
-        }
-
-        .mobile-list {
-            display: grid;
-
-            gap: 10px;
-
-            margin-bottom: 24px;
-
-            padding: 0;
-
-            list-style: none;
-        }
-
-        .mobile-list li {
+        .studio-card {
             position: relative;
-
-            padding-left: 18px;
-
-            color: var(--text-secondary);
-
-            font-size: 0.9rem;
+            overflow: hidden;
+            padding: 40px;
+            background:
+                radial-gradient(circle at 100% 0%, rgba(108, 99, 255, 0.22), transparent 45%),
+                radial-gradient(circle at 0% 100%, rgba(52, 211, 153, 0.08), transparent 40%),
+                var(--card);
         }
 
-        .mobile-list li::before {
-            content: "";
+        .studio-header {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 26px;
+            align-items: center;
+        }
 
-            position: absolute;
+        .studio-logo {
+            display: grid;
+            place-items: center;
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #1f8a5b, #0e5a3a 60%, #0a3d2a);
+            box-shadow: 0 14px 34px rgba(16, 120, 80, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
 
-            left: 0;
-            top: 0.7em;
+        .studio-logo svg {
+            width: 44px;
+            height: 44px;
+        }
 
-            width: 6px;
-            height: 6px;
+        .studio-kicker {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
 
-            border-radius: 50%;
+        .studio-header h3 {
+            margin-bottom: 6px;
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3vw, 2.1rem);
+            letter-spacing: -0.03em;
+        }
 
+        .studio-header p {
+            max-width: 560px;
+            color: var(--text-secondary);
+        }
+
+        .studio-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .studio-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .studio-stat strong {
+            color: var(--text);
+        }
+
+        .games-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            width: 100%;
+            margin-top: 30px;
+            padding: 18px 22px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            font: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .games-toggle:hover,
+        .games-toggle[aria-expanded="true"] {
+            border-color: var(--border-strong);
+            background: var(--accent-soft);
+        }
+
+        .games-toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .games-toggle-icons {
+            display: flex;
+        }
+
+        .games-toggle-icons img {
+            width: 34px;
+            height: 34px;
+            border: 2px solid var(--card-solid);
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .games-toggle-icons img + img {
+            margin-left: -10px;
+        }
+
+        .games-toggle-hint {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .chevron {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: transform 0.35s ease, background 0.25s ease;
+        }
+
+        .games-toggle[aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
             background: var(--accent);
+        }
+
+        .chevron svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .games-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.45s ease;
+        }
+
+        .games-panel.open {
+            grid-template-rows: 1fr;
+        }
+
+        .games-panel-inner {
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .games-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 26px 0 20px;
+        }
+
+        .filter {
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text-secondary);
+            font: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter:hover {
+            color: var(--text);
+            border-color: var(--border-strong);
+        }
+
+        .filter[aria-pressed="true"] {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+
+        .filter .count {
+            margin-left: 4px;
+            opacity: 0.7;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 18px;
+            padding-bottom: 4px;
+        }
+
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--card-solid);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-strong);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .game-card[hidden] {
+            display: none;
+        }
+
+        .game-cover {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #0b0f17;
+        }
+
+        .game-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .game-card:hover .game-cover img {
+            transform: scale(1.05);
+        }
+
+        .game-cover .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(8, 11, 18, 0.72);
+        }
+
+        .game-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 18px;
+        }
+
+        .game-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .game-icon {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .game-title h4 {
+            font-size: 1.05rem;
+            line-height: 1.2;
+        }
+
+        .game-title span {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .game-body p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 0.87rem;
+            line-height: 1.6;
+        }
+
+        .game-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .game-footer .button {
+            width: 100%;
+        }
+
+        .details-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .details-btn[aria-expanded="true"] {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+
+        .details-btn[aria-expanded="true"] svg {
+            transform: rotate(180deg);
+        }
+
+        .game-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent), 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Fiches détaillées */
+
+        .game-details {
+            padding-top: 4px;
+        }
+
+        @keyframes detail-in {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 2;
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(8, 11, 18, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--text);
+            cursor: pointer;
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .detail-close:hover {
+            border-color: var(--border-strong);
+            background: var(--accent);
+        }
+
+        .detail-close svg {
+            width: 18px;
+            height: 18px;
         }
 
         /* =========================
@@ -840,11 +1265,7 @@
 
         .skills-grid {
             display: grid;
-
-            grid-template-columns:
-                1fr
-                1fr;
-
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
 
@@ -853,36 +1274,48 @@
         }
 
         .skills-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 20px;
+            font-size: 1.15rem;
+        }
 
-            font-size: 1.2rem;
+        .skills-card h3 .icon {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent-soft);
+            color: var(--accent-light);
+        }
+
+        .skills-card h3 .icon svg {
+            width: 18px;
+            height: 18px;
         }
 
         .skills-list {
             display: flex;
-
             flex-wrap: wrap;
-
             gap: 10px;
         }
 
         .skill {
-            padding:
-                9px 13px;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.08);
-
+            padding: 8px 13px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
-
-            background:
-                rgba(255, 255, 255, 0.025);
-
+            background: rgba(255, 255, 255, 0.025);
             color: var(--text-secondary);
-
             font-size: 0.82rem;
             font-weight: 700;
+            transition: border-color 0.25s ease, color 0.25s ease;
+        }
+
+        .skill:hover {
+            border-color: var(--border-strong);
+            color: var(--text);
         }
 
         /* =========================
@@ -890,48 +1323,43 @@
         ========================= */
 
         .contact-card {
-            padding: 42px;
-
+            padding: 56px 42px;
             text-align: center;
-
             background:
-                radial-gradient(
-                    circle at top,
-                    rgba(108, 99, 255, 0.15),
-                    transparent 60%
-                ),
+                radial-gradient(circle at top, rgba(108, 99, 255, 0.2), transparent 60%),
                 var(--card);
         }
 
         .contact-card h2 {
             margin-bottom: 14px;
-
-            font-size: clamp(
-                2rem,
-                4vw,
-                3rem
-            );
-
-            letter-spacing: -0.04em;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.035em;
         }
 
         .contact-card p {
             max-width: 620px;
-
-            margin:
-                0 auto 26px;
-
+            margin: 0 auto 30px;
             color: var(--text-secondary);
         }
 
         .contact-links {
             display: flex;
-
             justify-content: center;
-
             flex-wrap: wrap;
-
             gap: 12px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            margin-top: 22px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            text-decoration: none;
+        }
+
+        .contact-email:hover {
+            color: var(--accent-light);
         }
 
         /* =========================
@@ -939,125 +1367,601 @@
         ========================= */
 
         footer {
-            padding:
-                40px 0;
-
-            border-top:
-                1px solid
-                rgba(255, 255, 255, 0.06);
-
+            padding: 36px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             color: var(--text-muted);
+            font-size: 0.84rem;
+        }
 
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+            border-color: var(--border-strong);
+        }
+
+        .footer-links svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        /* =========================
+           LIGHTBOX
+        ========================= */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(4, 6, 10, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: min(1280px, 100%);
+            max-height: 86vh;
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            transform: scale(0.96);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.open img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+            cursor: pointer;
+        }
+
+        .lightbox-close svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 18px;
+            left: 0;
+            right: 0;
+            padding: 0 70px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             text-align: center;
+        }
 
-            font-size: 0.82rem;
+        .lightbox-caption #lightbox-count {
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            margin-top: -26px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            color: white;
+            cursor: pointer;
+            transition: background 0.25s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent);
+        }
+
+        .lightbox-nav[hidden] {
+            display: none;
+        }
+
+        .lightbox-nav svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .lightbox-nav.prev {
+            left: 18px;
+        }
+
+        .lightbox-nav.prev svg {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav.next {
+            right: 18px;
+        }
+
+        .lightbox-nav.next svg {
+            transform: rotate(-90deg);
+        }
+
+        /* =========================
+           FICHES DE JEU
+        ========================= */
+
+        .game-sheet {
+            position: relative;
+            margin-top: 22px;
+            overflow: hidden;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius);
+            background: var(--card-solid);
+            box-shadow: var(--shadow);
+            animation: detail-in 0.45s ease;
+        }
+
+        .game-sheet[hidden] {
+            display: none;
+        }
+
+        .sheet-hero {
+            position: relative;
+            min-height: 380px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .sheet-hero > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sheet-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(17, 23, 35, 0.1) 0%, rgba(17, 23, 35, 0.55) 50%, var(--card-solid) 100%);
+        }
+
+        .sheet-hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 120px 44px 34px;
+        }
+
+        .sheet-hero h3 {
+            margin: 6px 0 4px;
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .sheet-hero .project-type {
+            margin-bottom: 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .sheet-hero .project-actions {
+            padding-top: 22px;
+        }
+
+        .sheet-body {
+            display: grid;
+            gap: 56px;
+            padding: 14px 44px 44px;
+        }
+
+        .sheet-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+            gap: 36px;
+            align-items: start;
+        }
+
+        .sheet-intro .lead {
+            margin-bottom: 16px;
+            color: var(--text);
+            font-size: 1.12rem;
+            line-height: 1.75;
+        }
+
+        .sheet-intro p {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+        }
+
+        .facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--border);
+        }
+
+        .fact {
+            padding: 18px;
+            background: var(--card-solid);
+        }
+
+        .fact strong {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .fact span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .sheet-section > h4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-family: var(--font-display);
+            font-size: 1.55rem;
+            letter-spacing: -0.02em;
+        }
+
+        .sheet-section > h4::before {
+            content: "";
+            width: 6px;
+            height: 26px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--accent-light), var(--accent-dark));
+        }
+
+        .sheet-section > .section-intro {
+            max-width: 760px;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+        }
+
+        .mechanics {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 14px;
+        }
+
+        .mechanic {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.025);
+            transition: border-color 0.25s ease;
+        }
+
+        .mechanic:hover {
+            border-color: var(--border-strong);
+        }
+
+        .mechanic .emoji {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 14px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            font-size: 1.3rem;
+        }
+
+        .mechanic h5 {
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+
+        .mechanic p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .gallery-group + .gallery-group {
+            margin-top: 34px;
+        }
+
+        .gallery-group > h5 {
+            margin-bottom: 14px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .shots {
+            display: grid;
+            gap: 16px;
+        }
+
+        .shots.landscape {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        .shots.portrait {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        }
+
+        .shots figure {
+            min-width: 0;
+        }
+
+        .shots.portrait .gallery-image {
+            aspect-ratio: 9 / 16;
+        }
+
+        .shots figcaption {
+            margin-top: 8px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .sheet-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 760px) {
+            .studio-card {
+                padding: 22px 12px 12px;
+            }
+
+            .studio-header,
+            .studio-stats,
+            .games-toggle,
+            .games-filters {
+                margin-left: 8px;
+                margin-right: 8px;
+                width: auto;
+            }
+
+            .sheet-hero {
+                min-height: 300px;
+            }
+
+            .sheet-hero-content {
+                padding: 90px 22px 24px;
+            }
+
+            .sheet-body {
+                gap: 44px;
+                padding: 8px 22px 28px;
+            }
+
+            .sheet-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .shots.landscape {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .shots.portrait {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .shots figcaption {
+                font-size: 0.72rem;
+            }
+
+            .lightbox-nav {
+                top: auto;
+                bottom: 54px;
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .shots.landscape {
+                grid-template-columns: 1fr;
+            }
+
+            .shots.portrait {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .no-js .reveal {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
 
         /* =========================
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1000px) {
             .hero-grid {
-                grid-template-columns:
-                    140px
-                    minmax(0, 1fr)
-                    minmax(280px, 360px);
-
-                gap: 30px;
-            }
-
-            .profile-photo {
-                width: 140px;
-                height: 140px;
-            }
-        }
-
-        @media (max-width: 950px) {
-            .hero-grid {
-                grid-template-columns:
-                    130px
-                    minmax(0, 1fr);
+                grid-template-columns: 1fr;
+                gap: 50px;
             }
 
             .cv-card {
-                grid-column: 1 / -1;
-
-                max-width: 480px;
-
-                margin: 10px auto 0;
+                max-width: 380px;
+                width: 100%;
+                margin: 0 auto;
             }
 
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .about-grid,
             .project-card {
                 grid-template-columns: 1fr;
             }
 
-            .project-image {
-                min-height: auto;
+            .project-card.reverse .project-content {
+                order: 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .skills-card:last-child {
+                grid-column: 1 / -1;
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 760px) {
+            :root {
+                --nav-height: 64px;
+            }
+
             section {
                 padding: 80px 0;
             }
 
-            section:first-of-type {
-                padding-top: 125px;
-            }
-
             .container,
             .nav-container {
-                width: min(
-                    calc(100% - 28px),
-                    var(--max-width)
-                );
+                width: min(calc(100% - 32px), var(--max-width));
             }
 
-            .nav-container {
-                min-height: 68px;
+            .nav-toggle {
+                display: block;
             }
 
             .nav-links {
-                gap: 14px;
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+                padding: 12px 16px 20px;
+                border-bottom: 1px solid var(--border);
+                background: rgba(8, 11, 18, 0.97);
+                transform: translateY(-10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+            }
+
+            .nav-links.open {
+                transform: none;
+                opacity: 1;
+                visibility: visible;
             }
 
             .nav-links a {
-                font-size: 0.78rem;
+                padding: 14px 16px;
+                font-size: 1rem;
             }
 
             .hero {
                 min-height: auto;
+                padding-top: calc(var(--nav-height) + 40px);
             }
 
-            .hero-grid {
-                grid-template-columns: 1fr;
-
-                text-align: center;
-
-                gap: 26px;
+            .hero-identity {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
             }
 
             .profile-photo {
-                margin: 0 auto;
+                width: 84px;
+                height: 84px;
             }
 
-            .hero-content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-description {
-                font-size: 0.98rem;
-            }
-
-            .hero-actions {
-                justify-content: center;
+            .hero-stats {
+                gap: 20px 30px;
             }
 
             .section-title {
@@ -1065,102 +1969,111 @@
             }
 
             .about-card,
-            .mobile-card,
-            .skills-card {
-                padding: 25px;
+            .skills-card,
+            .project-content,
+            .studio-card {
+                padding: 26px;
             }
 
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-content {
-                padding: 25px;
-            }
-
-            .project-content ul {
-                grid-template-columns: 1fr;
-            }
-
-            .project-image {
-                padding: 18px;
-            }
-
-            .gallery-image {
-                aspect-ratio: 16 / 9;
-            }
-
-            .mobile-section,
+            .info-grid,
+            .feature-list,
             .skills-grid {
                 grid-template-columns: 1fr;
             }
 
+            .project-media {
+                padding: 16px;
+            }
+
+            .studio-header {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .studio-logo {
+                width: 64px;
+                height: 64px;
+                border-radius: 18px;
+            }
+
+            .studio-logo svg {
+                width: 34px;
+                height: 34px;
+            }
+
+            .games-toggle {
+                padding: 16px;
+            }
+
+            .games-toggle-icons {
+                display: none;
+            }
+
             .contact-card {
-                padding: 32px 22px;
+                padding: 40px 22px;
             }
         }
 
         @media (max-width: 450px) {
-            .nav-links {
-                gap: 10px;
-            }
-
-            .nav-links a:nth-child(2),
-            .nav-links a:nth-child(3) {
-                display: none;
-            }
-
-            .profile-photo {
-                width: 115px;
-                height: 115px;
-            }
-
             .hero h1 {
                 font-size: 3rem;
             }
 
-            .project-image {
-                padding: 14px;
-            }
-
-            .project-gallery {
-                gap: 10px;
-            }
-
-            .gallery-image {
-                aspect-ratio: 16 / 9;
-
-                border-radius: 11px;
-            }
-
-            .button {
+            .hero-actions .button,
+            .contact-links .button,
+            .project-actions .button {
                 width: 100%;
             }
 
-            .contact-links .button {
-                width: 100%;
+            .games-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
-<body>
+<body class="no-js">
+
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+
+    <!-- Icônes réutilisables -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-play" viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1Z"/><path fill="#fbbf24" d="m17.2 8.6-3.4 3.4 3.4 3.4 3.9-2.2c.8-.5.8-1.7 0-2.2l-3.9-2.4Z"/><path fill="#38bdf8" d="M3.6 1.8c.3-.2.8-.2 1.2 0l12.4 6.8-3.4 3.4L3.6 1.8Z"/><path fill="#f87171" d="m13.8 12 3.4 3.4-12.4 6.8c-.4.2-.9.2-1.2 0L13.8 12Z"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.3 4.3 18.3 4.6 18.3 4.6c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.5H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0Z"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm18 2-10 7L2 6"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+        <symbol id="i-file" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M8 13h8M8 17h5"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-cap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 10 12 5 2 10l10 5 10-5Zm-16 2v5c3 2.5 9 2.5 12 0v-5"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Zm0-9a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m12 2 10 5-10 5L2 7l10-5Zm-10 10 10 5 10-5M2 17l10 5 10-5"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm10 2-4.3-4.3"/></symbol>
+        <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+        <symbol id="i-tool" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a4 4 0 0 0 5 5l-9.4 9.4a2.1 2.1 0 0 1-3-3l9.4-9.4a4 4 0 0 0-2-2Z"/></symbol>
+        <symbol id="i-gamepad" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 11h4M8 9v4m7-1h.01M18 10h.01M17.3 5H6.7a4 4 0 0 0-4 3.6L2 14.5A3 3 0 0 0 7.2 17l1.3-1.5a2 2 0 0 1 1.5-.7h4a2 2 0 0 1 1.5.7l1.3 1.5a3 3 0 0 0 5.2-2.5l-.7-5.9a4 4 0 0 0-4-3.6Z"/></symbol>
+    </svg>
 
     <!-- =========================
          NAVIGATION
     ========================= -->
 
-    <nav>
+    <nav id="nav" aria-label="Navigation principale">
         <div class="nav-container">
 
-            <a href="#accueil" class="logo">
-                Blanzat Raphaël
+            <a href="#accueil" class="logo" aria-label="Raphaël Blanzat, retour en haut">
+                <span class="logo-mark" aria-hidden="true">RB</span>
+                Raphaël Blanzat
             </a>
 
-            <div class="nav-links">
-                <a href="#accueil">Accueil</a>
+            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Ouvrir le menu">
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
                 <a href="#parcours">Parcours</a>
-                <a href="#projets">Projets</a>
+                <a href="#jeux">Mes jeux</a>
                 <a href="#competences">Compétences</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -1169,30 +2082,35 @@
     </nav>
 
 
-    <!-- =========================
-         ACCUEIL
-    ========================= -->
+    <main id="contenu">
 
-    <main id="accueil">
+        <!-- =========================
+             ACCUEIL
+        ========================= -->
 
-        <section class="hero">
-
+        <section class="hero" id="accueil">
             <div class="container">
-
                 <div class="hero-grid">
 
-                    <img
-                        src="images/photo.png"
-                        alt="Photo de Raphaël Blanzat"
-                        class="profile-photo"
-                        oncontextmenu="return false;"
-                    >
+                    <div class="hero-content reveal">
 
-                    <div class="hero-content">
-
-                        <span class="eyebrow">
-                            Étudiant en informatique
-                        </span>
+                        <div class="hero-identity">
+                            <img
+                                src="images/photo.jpg"
+                                alt="Photo de Raphaël Blanzat"
+                                class="profile-photo"
+                                width="96"
+                                height="96"
+                                oncontextmenu="return false;"
+                            >
+                            <div>
+                                <span class="eyebrow">Étudiant en informatique · Développeur de jeux</span>
+                                <span class="availability">
+                                    <span class="pulse" aria-hidden="true"></span>
+                                    Disponible pour un stage
+                                </span>
+                            </div>
+                        </div>
 
                         <h1>
                             Raphaël <span>Blanzat</span>
@@ -1203,53 +2121,51 @@
                         </p>
 
                         <div class="hero-actions">
-
-                            <a
-                                href="#projets"
-                                class="button button-primary"
-                            >
-                                Voir mes projets
+                            <a href="#jeux" class="button button-primary">
+                                <svg aria-hidden="true"><use href="#i-gamepad"/></svg>
+                                Voir mes jeux
                             </a>
-
-                            <a
-                                href="#contact"
-                                class="button button-secondary"
-                            >
+                            <a href="#contact" class="button button-secondary">
                                 Me contacter
                             </a>
+                        </div>
 
+                        <div class="hero-stats">
+                            <div>
+                                <strong>1</strong>
+                                <span>jeu publié sur Google Play</span>
+                            </div>
+                            <div>
+                                <strong>4</strong>
+                                <span>jeux développés avec Godot</span>
+                            </div>
+                            <div>
+                                <strong>2<sup>e</sup> année</strong>
+                                <span>Bachelor Informatique</span>
+                            </div>
                         </div>
 
                     </div>
 
-
                     <!-- CV -->
-
-                    <div class="card cv-card">
-
-                        <a
-                            href="CV_Raphael_Blanzat.pdf"
-                            class="cv-preview"
-                            target="_blank"
-                        >
-
+                    <div class="card cv-card reveal">
+                        <a href="CV_Raphael_Blanzat.pdf" class="cv-preview" target="_blank" rel="noopener">
                             <img
-                                src="images/cv.png"
+                                src="images/cv.jpg"
                                 alt="Aperçu du CV de Raphaël Blanzat"
+                                width="635"
+                                height="900"
+                                fetchpriority="high"
                             >
-
                             <span>
+                                <svg width="18" height="18" aria-hidden="true"><use href="#i-file"/></svg>
                                 Voir mon CV
                             </span>
-
                         </a>
-
                     </div>
 
                 </div>
-
             </div>
-
         </section>
 
 
@@ -1258,465 +2174,772 @@
         ========================= -->
 
         <section id="parcours">
-
             <div class="container">
 
-                <div class="section-title">
-
-                    <span class="section-label">
-                        Parcours
-                    </span>
-
-                    <h2>
-                        Mon parcours
-                    </h2>
-
+                <div class="section-title reveal">
+                    <span class="section-label">Parcours</span>
+                    <h2>Mon parcours</h2>
                     <p>
-                        Quelques informations sur ma formation,
-                        mes expériences et la direction que je souhaite
-                        donner à mon parcours professionnel.
+                        Quelques informations sur ma formation, mes expériences et la direction
+                        que je souhaite donner à mon parcours professionnel.
                     </p>
-
                 </div>
-
 
                 <div class="about-grid">
 
-                    <div class="card about-card">
-
-                        <h3>
-                            À propos de moi
-                        </h3>
-
+                    <div class="card about-card reveal">
+                        <h3>À propos de moi</h3>
                         <p>
-                            Je m'intéresse particulièrement à la création
-                            de projets interactifs et aux différentes étapes
-                            qui permettent de passer d'une idée à une
+                            Je m'intéresse particulièrement à la création de projets interactifs
+                            et aux différentes étapes qui permettent de passer d'une idée à une
                             réalisation fonctionnelle.
                         </p>
-
                         <p>
-                            Au fil de ma formation et de mes projets,
-                            j'ai eu l'occasion d'explorer différentes
-                            technologies et différentes façons de concevoir
-                            un projet. Cette pratique m'a permis de gagner
-                            progressivement en autonomie, de mieux comprendre
-                            la logique du développement et d'apprendre à
-                            avancer étape par étape face aux difficultés.
+                            Au fil de ma formation et de mes projets, j'ai eu l'occasion d'explorer
+                            différentes technologies et différentes façons de concevoir un projet.
+                            Cette pratique m'a permis de gagner progressivement en autonomie, de mieux
+                            comprendre la logique du développement et d'apprendre à avancer étape par
+                            étape face aux difficultés.
                         </p>
-
                         <p>
-                            Aujourd'hui, je souhaite continuer à élargir
-                            mes connaissances en découvrant de nouvelles
-                            méthodes de travail et en confrontant mes acquis
-                            à des projets et des problématiques différents.
+                            Aujourd'hui, je souhaite continuer à élargir mes connaissances en découvrant
+                            de nouvelles méthodes de travail et en confrontant mes acquis à des projets
+                            et des problématiques différents.
                         </p>
-
                     </div>
 
-
-                    <div class="info-grid">
-
+                    <div class="info-grid reveal">
                         <div class="info-card">
-                            <span>
-                                Formation
-                            </span>
-
-                            <strong>
-                                Bachelor Informatique
-                            </strong>
+                            <div class="icon"><svg aria-hidden="true"><use href="#i-cap"/></svg></div>
+                            <span>Formation</span>
+                            <strong>Bachelor Informatique</strong>
                         </div>
-
                         <div class="info-card">
-                            <span>
-                                Établissement
-                            </span>
-
-                            <strong>
-                                Montpellier Ynov Campus
-                            </strong>
+                            <div class="icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></div>
+                            <span>Établissement</span>
+                            <strong>Montpellier Ynov Campus</strong>
                         </div>
-
                         <div class="info-card">
-                            <span>
-                                Niveau
-                            </span>
-
-                            <strong>
-                                Deuxième année
-                            </strong>
+                            <div class="icon"><svg aria-hidden="true"><use href="#i-layers"/></svg></div>
+                            <span>Niveau</span>
+                            <strong>Deuxième année</strong>
                         </div>
-
                         <div class="info-card">
-                            <span>
-                                Recherche
-                            </span>
-
-                            <strong>
-                                Stage en développement
-                            </strong>
+                            <div class="icon"><svg aria-hidden="true"><use href="#i-search"/></svg></div>
+                            <span>Recherche</span>
+                            <strong>Stage en développement</strong>
                         </div>
-
                     </div>
 
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- =========================
-             PROJETS
+             MES JEUX — SYLVARIONS GAMES
         ========================= -->
 
-        <section id="projets">
-
+        <section id="jeux">
             <div class="container">
 
-                <div class="section-title">
-
-                    <span class="section-label">
-                        Projets
-                    </span>
-
-                    <h2>
-                        Ce que je développe
-                    </h2>
-
+                <div class="section-title reveal">
+                    <span class="section-label">Développement mobile</span>
+                    <h2>Mes jeux</h2>
                     <p>
-                        Des projets personnels qui me permettent
-                        d'expérimenter, de tester mes idées et de construire
-                        des réalisations concrètes.
+                        Je publie mes jeux Android sous le nom Sylvarions Games : de l'idée au
+                        gameplay, jusqu'à l'export Android, la fiche Google Play et le déploiement.
                     </p>
-
                 </div>
 
+                <div class="card studio-card reveal">
 
-                <div class="projects">
-
-
-                    <!-- =========================
-                         PROJET 1
-                    ========================= -->
-
-                    <article class="project-card">
-
-                        <div class="project-content">
-
-                            <span class="project-status">
-                                Premier jeu
-                            </span>
-
-                            <h3>
-                                Jeu narratif à choix
-                            </h3>
-
-                            <div class="project-type">
-                                Projet personnel — Premier projet de jeu
-                            </div>
-
-                            <p>
-                                Il s'agit de mon tout premier jeu vidéo.
-                                Le joueur incarne un personnage et progresse
-                                dans une histoire à travers des textes,
-                                des images et différents choix.
-                            </p>
-
-                            <p>
-                                Le projet est fonctionnel et complet dans
-                                la version que j'ai développée. Il s'agit
-                                avant tout d'un projet personnel qui m'a
-                                permis d'explorer la logique de gameplay
-                                et la conception d'une expérience
-                                interactive.
-                            </p>
-
-                            <p>
-                                Ce projet ne sera pas publié. Il représente
-                                surtout une première étape dans mon
-                                apprentissage du développement de jeux.
-                            </p>
-
-
-                            <ul>
-
-                                <li>
-                                    Système de choix
-                                </li>
-
-                                <li>
-                                    Progression narrative
-                                </li>
-
-                                <li>
-                                    Textes et illustrations
-                                </li>
-
-                                <li>
-                                    Logique interactive
-                                </li>
-
-                                <li>
-                                    Création de gameplay
-                                </li>
-
-                                <li>
-                                    Premier projet de jeu
-                                </li>
-
-                            </ul>
-
-
-                            <div class="tags">
-
-                                <span class="tag">
-                                    Godot
-                                </span>
-
-                                <span class="tag">
-                                    GDScript
-                                </span>
-
-                                <span class="tag">
-                                    Game Development
-                                </span>
-
-                                <span class="tag">
-                                    Prototype
-                                </span>
-
-                            </div>
-
+                    <div class="studio-header">
+                        <div class="studio-logo" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <path d="M24 4 9 26h9l-5 10h22l-5-10h9L24 4Z" fill="#a7f3d0"/>
+                                <path d="M24 4 15 17h6l-5 9h16l-5-9h6L24 4Z" fill="#ecfdf5"/>
+                                <rect x="21.5" y="36" width="5" height="8" rx="1.5" fill="#6ee7b7"/>
+                            </svg>
                         </div>
 
-
-                        <!-- GALERIE -->
-
-                        <div class="project-image">
-
-                            <div class="project-gallery">
-
-                                <div class="gallery-image">
-
-                                    <img
-                                        src="images/jeu1/image1.jpg"
-                                        alt="Capture du jeu narratif à choix"
-                                    >
-
-                                </div>
-
-
-                                <div class="gallery-image">
-
-                                    <img
-                                        src="images/jeu1/image2.jpg"
-                                        alt="Capture du jeu narratif à choix"
-                                    >
-
-                                </div>
-
-                            </div>
-
+                        <div>
+                            <span class="studio-kicker">Mon compte développeur</span>
+                            <h3>Sylvarions Games</h3>
+                            <p>Des jeux indépendants qui donnent vie à des univers uniques, entre exploration, stratégie et expériences originales.</p>
                         </div>
 
-                    </article>
-
-
-                    <!-- =========================
-                         PROJET 2
-                    ========================= -->
-
-                    <article class="project-card">
-
-                        <div class="project-content">
-
-                            <span class="project-status">
-                                Projet principal
-                            </span>
-
-                            <h3>
-                                Energie Station
-                            </h3>
-
-                            <div class="project-type">
-                                Jeu mobile — Clicker
-                            </div>
-
-                            <p>
-                                Energie Station est un jeu mobile de type
-                                clicker développé avec Godot. Le joueur
-                                produit de l'énergie afin de développer
-                                progressivement son installation et de
-                                débloquer de nouvelles améliorations.
-                            </p>
-
-                            <p>
-                                Le projet comprend un système d'économie,
-                                plusieurs installations, des améliorations,
-                                une progression par paliers, une histoire
-                                évolutive ainsi qu'un système de sauvegarde
-                                avec production d'énergie hors-ligne.
-                            </p>
-
-
-                            <ul>
-
-                                <li>
-                                    Production d'énergie
-                                </li>
-
-                                <li>
-                                    Installations et améliorations
-                                </li>
-
-                                <li>
-                                    Système d'économie
-                                </li>
-
-                                <li>
-                                    Progression par paliers
-                                </li>
-
-                                <li>
-                                    Histoire évolutive
-                                </li>
-
-                                <li>
-                                    Sauvegarde hors-ligne
-                                </li>
-
-                            </ul>
-
-
-                            <div class="tags">
-
-                                <span class="tag">
-                                    Godot
-                                </span>
-
-                                <span class="tag">
-                                    GDScript
-                                </span>
-
-                                <span class="tag">
-                                    Android
-                                </span>
-
-                                <span class="tag">
-                                    Game Development
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- GALERIE -->
-
-                        <div class="project-image">
-
-                            <div class="project-gallery">
-
-                                <div class="gallery-image">
-
-                                    <img
-                                        src="images/jeu2/image1.jpg"
-                                        alt="Capture d'Energie Station"
-                                    >
-
-                                </div>
-
-                                <div class="gallery-image">
-
-                                    <img
-                                        src="images/jeu2/image2.jpg"
-                                        alt="Capture d'Energie Station"
-                                    >
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             MOBILE / GOOGLE PLAY
-        ========================= -->
-
-        <section>
-
-            <div class="container">
-
-                <div class="section-title">
-
-                    <span class="section-label">
-                        Développement mobile
-                    </span>
-
-                    <h2>
-                        Jeux & publication
-                    </h2>
-
-                    <p>
-                        Une partie de mon expérience autour du développement
-                        et de la publication de jeux mobiles.
-                    </p>
-
-                </div>
-
-
-                <div class="mobile-section">
-
-                    <div class="card mobile-card">
-
-                        <h3>
-                            Développement Android
-                        </h3>
-
-                        <p>
-                            Je m'intéresse également aux différentes étapes
-                            qui permettent de passer d'un projet développé
-                            à une application utilisable sur Android.
-                        </p>
-
-                        <ul class="mobile-list">
-
-                            <li>
-                                Export et configuration Android
-                            </li>
-
-                            <li>
-                                Préparation d'une application
-                            </li>
-
-                            <li>
-                                Publication sur Google Play
-                            </li>
-
-                            <li>
-                                Tests et déploiement
-                            </li>
-
-                        </ul>
-
+                        <a href="https://play.google.com/store/apps/dev?id=8042980519563523044" class="button button-play" target="_blank" rel="noopener">
+                            <svg aria-hidden="true"><use href="#i-play"/></svg>
+                            <span class="play-text"><small>Voir sur</small>Google Play</span>
+                        </a>
                     </div>
 
+                    <div class="studio-stats">
+                        <span class="studio-stat"><strong data-count="live">1</strong> publié</span>
+                        <span class="studio-stat"><strong data-count="upcoming">2</strong> en préparation</span>
+                        <span class="studio-stat"><strong>Godot</strong> · GDScript</span>
+                        <span class="studio-stat"><strong>Android</strong></span>
+                    </div>
 
+                    <button class="games-toggle" id="games-toggle" type="button" aria-expanded="false" aria-controls="games-panel">
+                        <span class="games-toggle-label">
+                            <span class="games-toggle-icons" aria-hidden="true">
+                                <img src="images/energie/icone.jpg" alt="" width="34" height="34" loading="lazy">
+                                <img src="images/shop-street/icone.jpg" alt="" width="34" height="34" loading="lazy">
+                                <img src="images/haubeolia/icone.jpg" alt="" width="34" height="34" loading="lazy">
+                            </span>
+                            <span>
+                                Voir tous mes jeux
+                                <span class="games-toggle-hint" id="games-toggle-hint">Afficher la liste complète</span>
+                            </span>
+                        </span>
+                        <span class="chevron" aria-hidden="true"><svg><use href="#i-chevron"/></svg></span>
+                    </button>
+
+                    <div class="games-panel" id="games-panel">
+                        <div class="games-panel-inner">
+
+                            <div class="games-filters" role="group" aria-label="Filtrer les jeux">
+                                <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous<span class="count"></span></button>
+                                <button class="filter" type="button" data-filter="live" aria-pressed="false">Disponibles<span class="count"></span></button>
+                                <button class="filter" type="button" data-filter="upcoming" aria-pressed="false">En préparation<span class="count"></span></button>
+                                <button class="filter" type="button" data-filter="proto" aria-pressed="false">Prototypes<span class="count"></span></button>
+                            </div>
+
+                            <!--
+                                Pour ajouter un jeu : copier un bloc <article class="game-card">
+                                et choisir data-status parmi live, upcoming ou proto.
+                            -->
+                            <div class="games-grid">
+
+                                <article class="game-card" data-status="live">
+                                    <div class="game-cover">
+                                        <img src="images/energie/jeu/base-avancee.jpg" alt="Écran principal d'Energie Station" width="1280" height="720" loading="lazy" decoding="async">
+                                        <span class="badge live">Disponible</span>
+                                    </div>
+                                    <div class="game-body">
+                                        <div class="game-title">
+                                            <img class="game-icon" src="images/energie/icone.jpg" alt="Icône d'Energie Station" width="46" height="46" loading="lazy">
+                                            <div>
+                                                <h4>Energie Station</h4>
+                                                <span>Clicker · Mystère</span>
+                                            </div>
+                                        </div>
+                                        <p>Produis de l'énergie, améliore tes installations et découvre le mystère qui se cache derrière la ville.</p>
+                                        <div class="game-footer">
+                                            <a href="https://play.google.com/store/apps/details?id=com.energiestation.game" class="button button-play button-small" target="_blank" rel="noopener">
+                                                <svg aria-hidden="true"><use href="#i-play"/></svg>
+                                                Télécharger sur Google Play
+                                            </a>
+                                            <button class="button button-secondary button-small details-btn" type="button" aria-expanded="false" aria-controls="detail-energie">
+                                                Plus d'infos
+                                                <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="game-card" data-status="upcoming">
+                                    <div class="game-cover">
+                                        <img src="images/shop-street/banniere.jpg" alt="Bannière de Shop Street Idle : une rue commerçante néon années 80" width="1024" height="683" loading="lazy" decoding="async">
+                                        <span class="badge soon">Bientôt</span>
+                                    </div>
+                                    <div class="game-body">
+                                        <div class="game-title">
+                                            <img class="game-icon" src="images/shop-street/icone.jpg" alt="Icône de Shop Street Idle" width="46" height="46" loading="lazy">
+                                            <div>
+                                                <h4>Shop Street Idle</h4>
+                                                <span>Idle · Gestion · Années 80</span>
+                                            </div>
+                                        </div>
+                                        <p>Fais grandir une rue commerçante rétro, boutique après boutique : 10 rues, 65 boutiques, gains hors-ligne, en français et en anglais.</p>
+                                        <div class="game-footer">
+                                            <button class="button button-secondary button-small details-btn" type="button" aria-expanded="false" aria-controls="detail-shop-street">
+                                                Plus d'infos
+                                                <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="game-card" data-status="upcoming">
+                                    <div class="game-cover">
+                                        <img src="images/haubeolia/foret.jpg" alt="Forêt colorée, décor du jeu Haubéolia" width="1248" height="832" loading="lazy" decoding="async">
+                                        <span class="badge dev">En développement</span>
+                                    </div>
+                                    <div class="game-body">
+                                        <div class="game-title">
+                                            <img class="game-icon" src="images/haubeolia/icone.jpg" alt="Icône d'Haubéolia" width="46" height="46" loading="lazy">
+                                            <div>
+                                                <h4>Haubéolia</h4>
+                                                <span>Gestion · Village</span>
+                                            </div>
+                                        </div>
+                                        <p>Fonde un village au cœur de la forêt : accueille des villageois, récolte le bois et construis bergerie, boulangerie, carrière et ateliers.</p>
+                                        <div class="game-footer">
+                                            <button class="button button-secondary button-small details-btn" type="button" aria-expanded="false" aria-controls="detail-haubeolia">
+                                                Plus d'infos
+                                                <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="game-card" data-status="proto">
+                                    <div class="game-cover">
+                                        <img src="images/jeu1/image1.jpg" alt="Écran titre du Souffle du Dragon" width="1280" height="722" loading="lazy" decoding="async">
+                                        <span class="badge proto">Prototype</span>
+                                    </div>
+                                    <div class="game-body">
+                                        <div class="game-title">
+                                            <div>
+                                                <h4>Le Souffle du Dragon</h4>
+                                                <span>Narratif · Choix</span>
+                                            </div>
+                                        </div>
+                                        <p>Mon tout premier jeu : une histoire interactive faite de textes, d'illustrations et de choix. Projet d'apprentissage, non publié.</p>
+                                        <div class="game-footer">
+                                            <button class="button button-secondary button-small details-btn" type="button" aria-expanded="false" aria-controls="detail-dragon">
+                                                Plus d'infos
+                                                <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </div>
+
+                            <!-- Fiches détaillées, ouvertes par « Plus d'infos » -->
+                            <div class="game-details">
+
+                                <!-- ============ ENERGIE STATION ============ -->
+                                <article class="game-sheet" id="detail-energie" hidden>
+
+                                    <button class="detail-close" type="button" aria-label="Fermer la fiche">
+                                        <svg aria-hidden="true"><use href="#i-close"/></svg>
+                                    </button>
+
+                                    <div class="sheet-hero">
+                                        <img src="images/energie/fond.jpg" alt="" loading="lazy" decoding="async">
+                                        <div class="sheet-hero-content">
+                                            <div class="badges">
+                                                <span class="badge live">Disponible sur Google Play</span>
+                                                <span class="badge">Version 2.0.0</span>
+                                            </div>
+                                            <h3>Energie Station</h3>
+                                            <div class="project-type">Jeu mobile — Clicker · Idle · Histoire mystérieuse</div>
+                                            <div class="project-actions">
+                                                <a href="https://play.google.com/store/apps/details?id=com.energiestation.game" class="button button-play" target="_blank" rel="noopener">
+                                                    <svg aria-hidden="true"><use href="#i-play"/></svg>
+                                                    <span class="play-text"><small>Disponible sur</small>Google Play</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sheet-body">
+
+                                        <div class="sheet-intro">
+                                            <div>
+                                                <p class="lead">
+                                                    Energie Station est un jeu de type clicker dans lequel on rallume une ville
+                                                    plongée dans le noir. On touche l'éclair pour produire de l'énergie, on la
+                                                    réinvestit dans des installations toujours plus puissantes, et la production
+                                                    finit par tourner toute seule, même téléphone éteint.
+                                                </p>
+                                                <p>
+                                                    Derrière l'économie se cache une histoire en dix chapitres. Chaque palier
+                                                    d'énergie restaure peu à peu une illustration, et ce que l'on découvre dans
+                                                    la ville devient de plus en plus inquiétant… jusqu'à une révélation finale.
+                                                </p>
+                                                <p>
+                                                    C'est mon premier jeu publié sur Google Play. La version 2.0.0 a été
+                                                    entièrement retravaillée : nouvelles installations, laboratoire de mutations,
+                                                    surcharges, objectifs, prestige, 49 succès, boost publicitaire et
+                                                    interface en français et en anglais.
+                                                </p>
+                                            </div>
+                                            <div class="facts">
+                                                <div class="fact"><strong>6</strong><span>installations</span></div>
+                                                <div class="fact"><strong>49</strong><span>succès à débloquer</span></div>
+                                                <div class="fact"><strong>10</strong><span>chapitres d'histoire</span></div>
+                                                <div class="fact"><strong>3</strong><span>mutations</span></div>
+                                                <div class="fact"><strong>FR / EN</strong><span>deux langues</span></div>
+                                                <div class="fact"><strong>~4 000</strong><span>lignes de GDScript</span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Comment ça marche</h4>
+                                            <p class="section-intro">Une boucle simple à prendre en main, avec plusieurs couches de progression pour garder un objectif à chaque instant.</p>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">⚡</div><h5>Produire de l'énergie</h5><p>Chaque toucher sur l'éclair produit de l'énergie. Un clic rapporte 1 + 10 % de la production par seconde : il reste utile du début à la fin.</p></div>
+                                                <div class="mechanic"><div class="emoji">🔋</div><h5>Six installations</h5><p>Pile, Générateur, Réacteur, Turbine à plasma, Cœur de fusion et Singularité. Chacune se révèle au fil de la partie et coûte 15 % plus cher à chaque achat. Achat par ×1, ×10, ×100 ou au maximum.</p></div>
+                                                <div class="mechanic"><div class="emoji">🧪</div><h5>Laboratoire</h5><p>Des améliorations ×2 pour chaque installation, et trois mutations à faire évoluer : chance, durée et puissance des surcharges.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌩️</div><h5>Surcharges</h5><p>Une anomalie énergétique peut se déclencher à chaque seconde et multiplier toute la production pendant quelques secondes. L'écran s'emballe et l'éclair pulse.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎯</div><h5>Objectifs</h5><p>Un objectif court et un objectif long, générés selon la phase de jeu (cliquer, déclencher des surcharges, posséder des installations…), avec une récompense en énergie.</p></div>
+                                                <div class="mechanic"><div class="emoji">💎</div><h5>Prestige</h5><p>Relancer la station rapporte des cristaux d'énergie : +10 % de production chacun, pour toutes les parties suivantes. Histoire, succès et statistiques sont conservés.</p></div>
+                                                <div class="mechanic"><div class="emoji">🏆</div><h5>49 succès</h5><p>Énergie produite, installations, clics, surcharges, mutations, prestiges… Chaque succès ajoute +1 % de production de façon permanente.</p></div>
+                                                <div class="mechanic"><div class="emoji">📖</div><h5>Histoire à restaurer</h5><p>Dix illustrations à révéler en produisant toujours plus. Chaque chapitre débloqué déclenche une courte cinématique.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌙</div><h5>Production hors ligne</h5><p>Les installations continuent de produire jusqu'à 2 h quand le jeu est fermé. Une fenêtre résume les gains au retour.</p></div>
+                                                <div class="mechanic"><div class="emoji">🚀</div><h5>Accélérateur</h5><p>Une publicité facultative double la production pendant 10 minutes, cumulable jusqu'à 2 heures.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Sous le capot</h4>
+                                            <p class="section-intro">Ce que j'ai mis en place techniquement pour que le jeu soit fiable, équilibré et facile à faire évoluer.</p>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">🧠</div><h5>Un GameManager central</h5><p>Un autoload unique gère l'économie, la surcharge, les objectifs, le prestige, l'histoire et la sauvegarde. Les écrans ne font qu'afficher son état.</p></div>
+                                                <div class="mechanic"><div class="emoji">📊</div><h5>Données séparées du code</h5><p>Installations, mutations, succès, chapitres et textes FR/EN sont regroupés dans un seul fichier de données : équilibrer le jeu ne demande pas de toucher à la logique.</p></div>
+                                                <div class="mechanic"><div class="emoji">💾</div><h5>Sauvegarde versionnée</h5><p>Sauvegarde automatique toutes les 5 secondes en JSON, avec un numéro de version pour reprendre les anciennes parties après une mise à jour.</p></div>
+                                                <div class="mechanic"><div class="emoji">🔢</div><h5>Très grands nombres</h5><p>Affichage lisible jusqu'aux décillions (K, M, B, T, Qa, Qi…) et durées formatées.</p></div>
+                                                <div class="mechanic"><div class="emoji">📺</div><h5>Google AdMob</h5><p>Publicités récompensées uniquement, toujours facultatives, gérées par un AdsManager dédié.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎨</div><h5>Interface générée par le code</h5><p>Un thème et des composants d'interface communs créés en GDScript, pour un style cohérent sur tous les écrans et tous les formats de téléphone.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>En images</h4>
+                                            <p class="section-intro">Captures de la version 2.0.0. Cliquez sur une image pour l'agrandir et faire défiler la galerie.</p>
+
+                                            <div class="gallery-group">
+                                                <h5>Écrans principaux</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran titre"><img src="images/energie/jeu/menu.jpg" alt="Écran titre d'Energie Station" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Écran titre</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran principal"><img src="images/energie/jeu/base.jpg" alt="Écran principal avec l'éclair, la production et les objectifs" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'écran principal : l'éclair, la production et les objectifs</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : partie avancée"><img src="images/energie/jeu/base-avancee.jpg" alt="Écran principal en fin de partie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une partie avancée : 48,6 milliards d'énergie</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : surcharge"><img src="images/energie/jeu/surcharge.jpg" alt="Surcharge en cours sur l'écran principal" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une surcharge en cours : la production est multipliée</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>Installations, laboratoire et prestige</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : installations"><img src="images/energie/jeu/installations.jpg" alt="Menu des installations en milieu de partie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les installations en milieu de partie</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : toutes les installations"><img src="images/energie/jeu/installations-avancees.jpg" alt="Les six installations débloquées" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les six installations, jusqu'à la Singularité</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : laboratoire"><img src="images/energie/jeu/laboratoire.jpg" alt="Laboratoire : mutations et améliorations" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le laboratoire : mutations de surcharge et améliorations ×2</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : laboratoire avancé"><img src="images/energie/jeu/laboratoire-avance.jpg" alt="Laboratoire en fin de partie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le laboratoire en fin de partie</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : prestige"><img src="images/energie/jeu/prestige.jpg" alt="Écran de prestige et cristaux d'énergie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le prestige : relancer la station pour des cristaux</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : prestige avancé"><img src="images/energie/jeu/prestige-avance.jpg" alt="Prestige avec 14 cristaux" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>14 cristaux : +140 % de production</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : succès"><img src="images/energie/jeu/succes.jpg" alt="Liste des succès et statistiques" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Succès et statistiques de la partie</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : succès avancés"><img src="images/energie/jeu/succes-avances.jpg" alt="42 succès sur 49 débloqués" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>42 succès sur 49 débloqués</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : accélérateur"><img src="images/energie/jeu/accelerateur.jpg" alt="Accélérateur : boost de production" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'accélérateur : production doublée pendant 10 minutes</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : options"><img src="images/energie/jeu/options.jpg" alt="Options : son et langue" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Options : son et langue</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>L'histoire</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 2"><img src="images/energie/jeu/histoire-02.jpg" alt="Chapitre 2 : Les premiers signes" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 2 — Les premiers signes</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 3"><img src="images/energie/jeu/histoire-03.jpg" alt="Chapitre 3 : La contamination" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 3 — La contamination</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 4"><img src="images/energie/jeu/histoire-04.jpg" alt="Chapitre 4 : Les cobayes" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 4 — Les cobayes</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 5"><img src="images/energie/jeu/histoire-05.jpg" alt="Chapitre 5 : Quelque chose grandit" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 5 — Quelque chose grandit</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 8"><img src="images/energie/jeu/histoire-08.jpg" alt="Chapitre 8 : L'exploitation" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 8 — L'exploitation</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 9"><img src="images/energie/jeu/histoire-09.jpg" alt="Chapitre 9 : La véritable forme" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 9 — La véritable forme</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 10"><img src="images/energie/jeu/histoire-10.jpg" alt="Chapitre 10 : La domination" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 10 — La domination</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : cinématique"><img src="images/energie/jeu/cinematique.jpg" alt="Cinématique de déblocage d'un chapitre" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La cinématique qui accompagne chaque nouveau chapitre</figcaption></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-footer">
+                                            <div class="tags">
+                                                <span class="tag">Godot 4</span>
+                                                <span class="tag">GDScript</span>
+                                                <span class="tag">Android</span>
+                                                <span class="tag">Google AdMob</span>
+                                                <span class="tag">Game design</span>
+                                                <span class="tag">Équilibrage</span>
+                                            </div>
+                                            <button class="button button-secondary detail-close-bottom" type="button">Fermer la fiche</button>
+                                        </div>
+
+                                    </div>
+                                </article>
+
+
+                                <!-- ============ SHOP STREET IDLE ============ -->
+                                <article class="game-sheet" id="detail-shop-street" hidden>
+
+                                    <button class="detail-close" type="button" aria-label="Fermer la fiche">
+                                        <svg aria-hidden="true"><use href="#i-close"/></svg>
+                                    </button>
+
+                                    <div class="sheet-hero">
+                                        <img src="images/shop-street/banniere.jpg" alt="" width="1024" height="683" loading="lazy" decoding="async">
+                                        <div class="sheet-hero-content">
+                                            <div class="badges">
+                                                <span class="badge soon">Bientôt sur Google Play</span>
+                                                <span class="badge">Android · Portrait</span>
+                                            </div>
+                                            <h3>Shop Street Idle</h3>
+                                            <div class="project-type">Jeu mobile — Idle · Gestion · Univers années 80</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sheet-body">
+
+                                        <div class="sheet-intro">
+                                            <div>
+                                                <p class="lead">
+                                                    Shop Street Idle est un jeu de gestion « idle » où l'on fait grandir une rue
+                                                    commerçante des années 80, boutique après boutique : du petit stand de glaces
+                                                    de Miami jusqu'aux gratte-ciel de Wall Street.
+                                                </p>
+                                                <p>
+                                                    Chaque boutique rapporte des pièces en continu, même téléphone éteint. On
+                                                    réinvestit ces gains pour améliorer ses boutiques, franchir des paliers qui
+                                                    doublent les revenus, puis débloquer la rue suivante. Dix rues à thème, dix
+                                                    ambiances néon : Miami Néon, Arcade City, Hollywood VHS, Tokyo Pop, Rock
+                                                    Boulevard, Aérobic Beach, Ski Fluo, Rétro-Futur, Station Lunaire et Wall
+                                                    Street Yuppie.
+                                                </p>
+                                                <p>
+                                                    L'objectif final : amener les 65 boutiques au niveau 25 pour décrocher le
+                                                    titre de Magnat de Shop Street. Le jeu est gratuit, financé uniquement par
+                                                    des publicités, et disponible en français et en anglais.
+                                                </p>
+                                            </div>
+                                            <div class="facts">
+                                                <div class="fact"><strong>10</strong><span>rues à thème</span></div>
+                                                <div class="fact"><strong>65</strong><span>boutiques</span></div>
+                                                <div class="fact"><strong>999</strong><span>niveaux par boutique</span></div>
+                                                <div class="fact"><strong>FR / EN</strong><span>langue automatique</span></div>
+                                                <div class="fact"><strong>Godot 4.6</strong><span>portrait 1080 × 1920</span></div>
+                                                <div class="fact"><strong>~4 000</strong><span>lignes de GDScript</span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Comment ça marche</h4>
+                                            <p class="section-intro">Une progression pensée pour qu'il y ait toujours une boutique à acheter, un palier à viser ou une rue à débloquer.</p>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">💰</div><h5>Revenus passifs</h5><p>Chaque boutique produit des pièces chaque seconde. Les boutiques suivantes coûtent ×2,7 plus cher mais rapportent ×2,36 plus : la courbe reste toujours motivante.</p></div>
+                                                <div class="mechanic"><div class="emoji">⬆️</div><h5>Améliorations</h5><p>Chaque niveau augmente les revenus de la boutique (+15 % de prix par niveau). Achat par ×1, ×10, ×100 ou MAX en un seul bouton.</p></div>
+                                                <div class="mechanic"><div class="emoji">🏅</div><h5>Paliers</h5><p>Aux niveaux 10, 25, 50 et 100, les revenus de la boutique doublent, avec une animation et un son dédiés.</p></div>
+                                                <div class="mechanic"><div class="emoji">🛣️</div><h5>Dix rues</h5><p>Débloquer une rue ouvre un nouvel univers graphique et de nouvelles boutiques. La carte permet de revenir sur les anciennes rues.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌙</div><h5>Gains hors ligne</h5><p>Les boutiques rapportent 50 % de leurs revenus pendant l'absence du joueur, jusqu'à 4 heures, avec un récapitulatif au retour.</p></div>
+                                                <div class="mechanic"><div class="emoji">🚐</div><h5>Le camion VHS</h5><p>Il traverse la rue toutes les 15 minutes : le toucher propose un bonus de pièces en échange d'une publicité, toujours facultative.</p></div>
+                                                <div class="mechanic"><div class="emoji">⚡</div><h5>Boost ×2</h5><p>Une publicité double tous les revenus pendant 30 minutes, cumulable jusqu'à 4 heures.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎁</div><h5>Amélioration gratuite</h5><p>Toutes les 15 minutes : +5 niveaux offerts à la boutique de son choix.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎓</div><h5>Tutoriel guidé</h5><p>Les premières minutes guident le joueur : acheter, améliorer, puis attraper le camion.</p></div>
+                                                <div class="mechanic"><div class="emoji">👑</div><h5>Titre de Magnat</h5><p>Le but ultime : les 65 boutiques au niveau 25. On peut ensuite continuer jusqu'au niveau 999.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Sous le capot</h4>
+                                            <p class="section-intro">Un projet structuré comme un vrai produit : architecture claire, publicités conformes au RGPD et tests automatisés.</p>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">🧩</div><h5>Architecture en autoloads</h5><p>Économie et sauvegarde, publicités, traductions, formatage des grands nombres, ressources graphiques et sons : chaque responsabilité a son propre module.</p></div>
+                                                <div class="mechanic"><div class="emoji">💾</div><h5>Sauvegarde sûre</h5><p>Sauvegarde automatique toutes les 30 secondes, avec une copie de secours à chaque écriture.</p></div>
+                                                <div class="mechanic"><div class="emoji">📺</div><h5>Publicités responsables</h5><p>Google AdMob avec formulaire de consentement : aucune publicité avant l'accord du joueur, aucune pendant les 5 premières minutes, et un délai minimum entre deux publicités.</p></div>
+                                                <div class="mechanic"><div class="emoji">🖥️</div><h5>Publicités simulées sur PC</h5><p>Sur ordinateur, un écran « PUBLICITÉ TEST » avec compte à rebours remplace AdMob, pour tester tout le parcours sans téléphone.</p></div>
+                                                <div class="mechanic"><div class="emoji">🧪</div><h5>Tests automatisés</h5><p>Une simulation mesure le temps pour atteindre chaque rue, et un script joue une partie complète à travers la vraie interface en vérifiant chaque étape. Les captures de cette fiche viennent de ce test.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌍</div><h5>Localisation</h5><p>Tous les textes en français et en anglais, langue choisie automatiquement selon le téléphone et modifiable dans les réglages.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>En images</h4>
+                                            <p class="section-intro">Captures prises pendant une partie complète, de la première boutique jusqu'au titre de Magnat. Cliquez pour agrandir et faire défiler.</p>
+
+                                            <div class="gallery-group">
+                                                <h5>Les débuts</h5>
+                                                <div class="shots portrait">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : tutoriel"><img src="images/shop-street/jeu/tutoriel.jpg" alt="Tutoriel : acheter le premier stand de glaces" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le tutoriel : acheter son premier stand de glaces</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : le camion arrive"><img src="images/shop-street/jeu/camion-tuto.jpg" alt="Le camion VHS traverse la rue" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le camion VHS traverse la rue</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : camion VHS"><img src="images/shop-street/jeu/camion-vhs.jpg" alt="Fenêtre du camion VHS" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le bonus du camion VHS</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : nouvelle rue"><img src="images/shop-street/jeu/nouvelle-rue.jpg" alt="Déblocage d'une nouvelle rue" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Une nouvelle rue débloquée</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>Les dix rues</h5>
+                                                <div class="shots portrait">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Miami Néon"><img src="images/shop-street/jeu/rue-01-miami-neon.jpg" alt="Rue 1 : Miami Néon" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>1 · Miami Néon</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Arcade City"><img src="images/shop-street/jeu/rue-02-arcade-city.jpg" alt="Rue 2 : Arcade City" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>2 · Arcade City</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Hollywood VHS"><img src="images/shop-street/jeu/rue-03-hollywood-vhs.jpg" alt="Rue 3 : Hollywood VHS" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>3 · Hollywood VHS</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Tokyo Pop"><img src="images/shop-street/jeu/rue-04-tokyo-pop.jpg" alt="Rue 4 : Tokyo Pop" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>4 · Tokyo Pop</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Rock Boulevard"><img src="images/shop-street/jeu/rue-05-rock-boulevard.jpg" alt="Rue 5 : Rock Boulevard" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>5 · Rock Boulevard</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Aérobic Beach"><img src="images/shop-street/jeu/rue-06-aerobic-beach.jpg" alt="Rue 6 : Aérobic Beach" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>6 · Aérobic Beach</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Ski Fluo"><img src="images/shop-street/jeu/rue-07-ski-fluo.jpg" alt="Rue 7 : Ski Fluo" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>7 · Ski Fluo</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Rétro-Futur"><img src="images/shop-street/jeu/rue-08-retro-futur.jpg" alt="Rue 8 : Rétro-Futur" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>8 · Rétro-Futur</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Station Lunaire"><img src="images/shop-street/jeu/rue-09-station-lunaire.jpg" alt="Rue 9 : Station Lunaire" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>9 · Station Lunaire</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Wall Street Yuppie"><img src="images/shop-street/jeu/rue-10-wall-street.jpg" alt="Rue 10 : Wall Street Yuppie" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>10 · Wall Street Yuppie</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>Menus et fonctionnalités</h5>
+                                                <div class="shots portrait">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : menu boutiques"><img src="images/shop-street/jeu/menu-boutiques.jpg" alt="Menu des boutiques" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Toutes les boutiques et leurs revenus</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : menu boosts"><img src="images/shop-street/jeu/menu-boosts.jpg" alt="Menu des boosts" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Boosts, amélioration gratuite et camion</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : carte"><img src="images/shop-street/jeu/menu-carte.jpg" alt="Carte des rues" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>La carte des rues</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : réglages"><img src="images/shop-street/jeu/menu-reglages.jpg" alt="Réglages : son, vibrations, langue" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Réglages : son, vibrations, langue, confidentialité</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : amélioration gratuite"><img src="images/shop-street/jeu/amelioration-gratuite.jpg" alt="Choix de la boutique pour l'amélioration gratuite" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Choisir la boutique qui reçoit +5 niveaux</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : objectif final"><img src="images/shop-street/jeu/objectif-final.jpg" alt="Objectif final : toutes les boutiques au niveau 25" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>L'objectif final : 65 boutiques au niveau 25</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Magnat"><img src="images/shop-street/jeu/magnat.jpg" alt="Titre de Magnat de Shop Street" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le titre de Magnat de Shop Street</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : version anglaise"><img src="images/shop-street/jeu/anglais.jpg" alt="Le jeu en anglais" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le jeu en anglais</figcaption></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-footer">
+                                            <div class="tags">
+                                                <span class="tag">Godot 4.6</span>
+                                                <span class="tag">GDScript</span>
+                                                <span class="tag">Android</span>
+                                                <span class="tag">Google AdMob</span>
+                                                <span class="tag">RGPD</span>
+                                                <span class="tag">Tests automatisés</span>
+                                            </div>
+                                            <button class="button button-secondary detail-close-bottom" type="button">Fermer la fiche</button>
+                                        </div>
+
+                                    </div>
+                                </article>
+
+
+                                <!-- ============ HAUBÉOLIA ============ -->
+                                <article class="game-sheet" id="detail-haubeolia" hidden>
+
+                                    <button class="detail-close" type="button" aria-label="Fermer la fiche">
+                                        <svg aria-hidden="true"><use href="#i-close"/></svg>
+                                    </button>
+
+                                    <div class="sheet-hero">
+                                        <img src="images/haubeolia/foret.jpg" alt="" loading="lazy" decoding="async">
+                                        <div class="sheet-hero-content">
+                                            <div class="badges">
+                                                <span class="badge dev">En développement</span>
+                                                <span class="badge">Android · Paysage</span>
+                                            </div>
+                                            <h3>Haubéolia</h3>
+                                            <div class="project-type">Jeu mobile — Gestion · Construction de village · Histoire</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sheet-body">
+
+                                        <div class="sheet-intro">
+                                            <div>
+                                                <p class="lead">
+                                                    Haubéolia est un jeu de gestion et de construction : on y rebâtit un village
+                                                    au cœur d'une vallée, avec une poignée de villageois qui ont chacun leur nom,
+                                                    leur caractère, leurs compétences et leur histoire.
+                                                </p>
+                                                <p>
+                                                    Au départ, il ne reste qu'un campement autour d'un feu et une vieille scierie
+                                                    à réparer. Les villageois abattent les arbres, transforment le bois, réparent
+                                                    puis construisent : puits, carrière, réserve, champ, moulin, boulangerie,
+                                                    bergerie, filature, atelier de tissage, rucher, miellerie, chandellerie…
+                                                    Chaque bâtiment ouvre une nouvelle chaîne de production.
+                                                </p>
+                                                <p>
+                                                    Tout avance en temps réel, même jeu fermé : missions, chantiers et recherches
+                                                    continuent, et le jeu rattrape exactement ce qui s'est passé à la réouverture.
+                                                    L'histoire se découvre dans le Carnet d'Aube, dont les pages se débloquent au
+                                                    fil de la reconstruction, jusqu'à la Fête des Lanternes.
+                                                </p>
+                                            </div>
+                                            <div class="facts">
+                                                <div class="fact"><strong>13</strong><span>bâtiments</span></div>
+                                                <div class="fact"><strong>10</strong><span>décorations</span></div>
+                                                <div class="fact"><strong>12</strong><span>ressources</span></div>
+                                                <div class="fact"><strong>7</strong><span>branches de recherche</span></div>
+                                                <div class="fact"><strong>20</strong><span>objets à collectionner</span></div>
+                                                <div class="fact"><strong>~11 000</strong><span>lignes de GDScript</span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Comment ça marche</h4>
+                                            <p class="section-intro">Un jeu calme et vivant : il y a toujours quelque chose à faire pendant les attentes, sans jamais accélérer artificiellement la partie.</p>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">👥</div><h5>Des villageois uniques</h5><p>Chacun a un prénom, une apparence, des compétences et des affinités. Discuter avec eux dévoile peu à peu leur histoire, et ils formulent leurs propres petites demandes.</p></div>
+                                                <div class="mechanic"><div class="emoji">🪓</div><h5>Missions</h5><p>Réparer, produire, construire, abattre, accueillir un nouveau venu. Les villageois marchent jusqu'au lieu de travail, attendent que l'équipe soit au complet, travaillent puis rentrent.</p></div>
+                                                <div class="mechanic"><div class="emoji">🏗️</div><h5>Construction libre</h5><p>On choisit l'emplacement de chaque bâtiment sur la carte, on lance le chantier, et on peut déplacer ses bâtiments à tout moment.</p></div>
+                                                <div class="mechanic"><div class="emoji">⚙️</div><h5>Chaînes de production</h5><p>Le blé devient farine au moulin puis pain à la boulangerie. La laine passe par la filature puis l'atelier de tissage. Le miel du rucher donne la cire, puis les bougies.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌳</div><h5>Arbre de compétences</h5><p>Sept branches (bois, eau, pierre, réserve, champ, moulin, boulangerie). Une seule recherche à la fois pour tout le village, qui avance même jeu fermé et s'annule sans perte.</p></div>
+                                                <div class="mechanic"><div class="emoji">🔥</div><h5>Le feu de camp</h5><p>Le cœur du village : le repas partagé et la veillée aux bougies donnent chacun un bonus de production pendant une heure.</p></div>
+                                                <div class="mechanic"><div class="emoji">🍄</div><h5>Cueillette et trésors</h5><p>Des trouvailles scintillent sur la carte (12 à collectionner), et 8 trésors de l'ancien village attendent d'être retrouvés, chacun avec son histoire.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎯</div><h5>Objectifs du jour et journal</h5><p>Des objectifs quotidiens renouvelés et un journal qui raconte tout ce qui se passe dans le village.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌗</div><h5>Jour et nuit</h5><p>Le ciel suit l'heure réelle du téléphone : aube, journée, crépuscule et nuit. Le feu de camp et les lanternes éclairent le village dans l'obscurité.</p></div>
+                                                <div class="mechanic"><div class="emoji">🐾</div><h5>Animaux de la vallée</h5><p>Chats et chiens près du camp, poules, vaches, cochons et poissons dans la rivière. Les toucher fait apparaître un petit cœur.</p></div>
+                                                <div class="mechanic"><div class="emoji">📖</div><h5>Une histoire</h5><p>Une introduction, le Carnet d'Aube et ses pages à débloquer, puis la Fête des Lanternes, où les villageois se réunissent pour lâcher des lanternes dans la nuit.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Sous le capot</h4>
+                                            <p class="section-intro">Mon projet le plus ambitieux techniquement, avec un vrai travail sur la simulation et la fiabilité.</p>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">⏱️</div><h5>Simulation déterministe</h5><p>La position d'un villageois et l'avancement d'une mission sont calculés à partir du temps de jeu. Le jeu sait exactement où en est chaque chose, même après des heures fermé, sans jamais donner deux fois une récompense.</p></div>
+                                                <div class="mechanic"><div class="emoji">🗺️</div><h5>Grille et déplacements</h5><p>Le terrain est analysé (sol, eau profonde, obstacles) pour calculer les déplacements, puis mis en cache pour un démarrage rapide.</p></div>
+                                                <div class="mechanic"><div class="emoji">💾</div><h5>Sauvegardes</h5><p>Sauvegarde automatique avec copie de secours, plus des emplacements de sauvegarde manuels.</p></div>
+                                                <div class="mechanic"><div class="emoji">📺</div><h5>Publicités récompensées encadrées</h5><p>Toujours facultatives : une seule fois par mission, chantier ou recherche, et un nombre maximum par jour pour chaque type de récompense.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌍</div><h5>Traduction complète</h5><p>Tous les textes du jeu, histoire comprise, en français et en anglais.</p></div>
+                                                <div class="mechanic"><div class="emoji">🧪</div><h5>Outils de test</h5><p>Une vingtaine de scripts pour tester les clics, les gestes tactiles, les parcours, la logique de jeu et le rendu visuel.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>En images</h4>
+                                            <p class="section-intro">Captures d'une partie en cours. Cliquez pour agrandir et faire défiler.</p>
+
+                                            <div class="gallery-group">
+                                                <h5>Le village</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran titre"><img src="images/haubeolia/jeu/titre.jpg" alt="Écran titre d'Haubéolia" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Écran titre</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : le village"><img src="images/haubeolia/jeu/village.jpg" alt="Vue du village avec ses bâtiments et villageois" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le village : scierie, moulin, tentes et feu de camp</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : centre du village"><img src="images/haubeolia/jeu/village-centre.jpg" alt="Le centre du village" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le centre du village au bord de la rivière</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : crépuscule"><img src="images/haubeolia/jeu/crepuscule.jpg" alt="Le village au crépuscule" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le crépuscule</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : nuit"><img src="images/haubeolia/jeu/nuit.jpg" alt="Le village la nuit, éclairé par le feu de camp" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La nuit, éclairée par le feu de camp</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>Les bâtiments</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : scierie"><img src="images/haubeolia/jeu/menu-scierie.jpg" alt="Menu de la scierie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La scierie : envoyer des villageois produire du bois</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : boulangerie"><img src="images/haubeolia/jeu/menu-boulangerie.jpg" alt="Menu de la boulangerie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La boulangerie transforme la farine en pain</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : moulin"><img src="images/haubeolia/jeu/menu-moulin.jpg" alt="Menu du moulin" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le moulin transforme le blé en farine</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : champ"><img src="images/haubeolia/jeu/menu-champ.jpg" alt="Menu du champ" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le champ de blé</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : carrière"><img src="images/haubeolia/jeu/menu-carriere.jpg" alt="Menu de la carrière" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La carrière de pierre</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : puits"><img src="images/haubeolia/jeu/menu-puits.jpg" alt="Menu du puits" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le puits</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : réserve"><img src="images/haubeolia/jeu/menu-reserve.jpg" alt="Menu de la réserve et des stocks" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La réserve : stocks et capacités</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : tente"><img src="images/haubeolia/jeu/menu-tente.jpg" alt="Menu d'une tente et de son habitant" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une tente et son habitant</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : construction"><img src="images/haubeolia/jeu/menu-construction.jpg" alt="Menu de construction" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le menu de construction : bâtiments et décorations</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>Les villageois</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : fiche de Bertrand"><img src="images/haubeolia/jeu/fiche-villageois.jpg" alt="Fiche du villageois Bertrand" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Fiche d'un villageois : compétences et affinités</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : fiche de Béatrice"><img src="images/haubeolia/jeu/fiche-villageois-2.jpg" alt="Fiche de la villageoise Béatrice" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chaque villageois a son propre profil</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : liste des villageois"><img src="images/haubeolia/jeu/liste-villageois.jpg" alt="Liste de tous les villageois" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Tous les villageois et leurs compétences</figcaption></figure>
+                                                </div>
+                                            </div>
+
+                                            <div class="gallery-group">
+                                                <h5>Progression et vie du village</h5>
+                                                <div class="shots landscape">
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : arbre de compétences"><img src="images/haubeolia/jeu/arbre-competences.jpg" alt="Arbre de compétences" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'arbre de compétences</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : feu de camp"><img src="images/haubeolia/jeu/feu-de-camp.jpg" alt="Menu du feu de camp" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le feu de camp : repas partagé et veillée</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : objectifs"><img src="images/haubeolia/jeu/objectifs.jpg" alt="Objectifs du jour" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les objectifs du jour et les demandes des villageois</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : collection"><img src="images/haubeolia/jeu/collection.jpg" alt="Album de collection" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'album de collection</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : journal"><img src="images/haubeolia/jeu/journal.jpg" alt="Journal du village" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le journal du village</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : carnet d'Aube"><img src="images/haubeolia/jeu/carnet.jpg" alt="Le Carnet d'Aube" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le Carnet d'Aube, fil de l'histoire</figcaption></figure>
+                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : paramètres"><img src="images/haubeolia/jeu/parametres.jpg" alt="Paramètres et sauvegardes" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Paramètres, langue et emplacements de sauvegarde</figcaption></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-footer">
+                                            <div class="tags">
+                                                <span class="tag">Godot 4.6</span>
+                                                <span class="tag">GDScript</span>
+                                                <span class="tag">Android</span>
+                                                <span class="tag">Simulation</span>
+                                                <span class="tag">Google AdMob</span>
+                                                <span class="tag">Narration</span>
+                                            </div>
+                                            <button class="button button-secondary detail-close-bottom" type="button">Fermer la fiche</button>
+                                        </div>
+
+                                    </div>
+                                </article>
+
+
+                                <!-- ============ LE SOUFFLE DU DRAGON ============ -->
+                                <article class="game-sheet" id="detail-dragon" hidden>
+
+                                    <button class="detail-close" type="button" aria-label="Fermer la fiche">
+                                        <svg aria-hidden="true"><use href="#i-close"/></svg>
+                                    </button>
+
+                                    <div class="sheet-hero">
+                                        <img src="images/jeu1/image1.jpg" alt="" width="1280" height="722" loading="lazy" decoding="async">
+                                        <div class="sheet-hero-content">
+                                            <div class="badges">
+                                                <span class="badge proto">Premier jeu · Non publié</span>
+                                            </div>
+                                            <h3>Le Souffle du Dragon</h3>
+                                            <div class="project-type">Jeu narratif à choix — Projet personnel</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="sheet-body">
+
+                                        <div class="sheet-intro">
+                                            <div>
+                                                <p class="lead">
+                                                    Il s'agit de mon tout premier jeu vidéo. Le joueur incarne un personnage
+                                                    et progresse dans une histoire à travers des textes, des images et
+                                                    différents choix.
+                                                </p>
+                                                <p>
+                                                    Le projet est fonctionnel et complet dans la version que j'ai développée.
+                                                    Il s'agit avant tout d'un projet personnel qui m'a permis d'explorer la
+                                                    logique de gameplay et la conception d'une expérience interactive.
+                                                </p>
+                                                <p>
+                                                    Ce projet ne sera pas publié. Il représente surtout une première étape
+                                                    dans mon apprentissage du développement de jeux.
+                                                </p>
+                                            </div>
+                                            <div class="facts">
+                                                <div class="fact"><strong>1<sup>er</sup></strong><span>jeu développé</span></div>
+                                                <div class="fact"><strong>Godot</strong><span>moteur de jeu</span></div>
+                                                <div class="fact"><strong>Choix</strong><span>histoire à embranchements</span></div>
+                                                <div class="fact"><strong>Complet</strong><span>jouable de bout en bout</span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>Ce que ce projet m'a appris</h4>
+                                            <div class="mechanics">
+                                                <div class="mechanic"><div class="emoji">🔀</div><h5>Système de choix</h5><p>Construire une histoire qui se ramifie selon les décisions du joueur.</p></div>
+                                                <div class="mechanic"><div class="emoji">📜</div><h5>Progression narrative</h5><p>Enchaîner textes et illustrations pour raconter une aventure.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎮</div><h5>Logique de gameplay</h5><p>Passer d'une idée à une expérience interactive complète et jouable.</p></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-section">
+                                            <h4>En images</h4>
+                                            <div class="shots landscape">
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran titre"><img src="images/jeu1/image1.jpg" alt="Écran titre du jeu Le Souffle du Dragon" width="1280" height="722" loading="lazy" decoding="async"></button><figcaption>Écran titre</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : en jeu"><img src="images/jeu1/image2.jpg" alt="Capture du jeu narratif Le Souffle du Dragon" width="1280" height="722" loading="lazy" decoding="async"></button><figcaption>En jeu</figcaption></figure>
+                                            </div>
+                                        </div>
+
+                                        <div class="sheet-footer">
+                                            <div class="tags">
+                                                <span class="tag">Godot</span>
+                                                <span class="tag">GDScript</span>
+                                                <span class="tag">Narration</span>
+                                                <span class="tag">Prototype</span>
+                                            </div>
+                                            <button class="button button-secondary detail-close-bottom" type="button">Fermer la fiche</button>
+                                        </div>
+
+                                    </div>
+                                </article>
+
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
 
             </div>
-
         </section>
 
 
@@ -1725,118 +2948,54 @@
         ========================= -->
 
         <section id="competences">
-
             <div class="container">
 
-                <div class="section-title">
-
-                    <span class="section-label">
-                        Compétences
-                    </span>
-
-                    <h2>
-                        Technologies & outils
-                    </h2>
-
-                    <p>
-                        Les technologies et outils que j'utilise
-                        dans mes projets et ma formation.
-                    </p>
-
+                <div class="section-title reveal">
+                    <span class="section-label">Compétences</span>
+                    <h2>Technologies &amp; outils</h2>
+                    <p>Les technologies et outils que j'utilise dans mes projets et ma formation.</p>
                 </div>
-
 
                 <div class="skills-grid">
 
-                    <div class="card skills-card">
-
-                        <h3>
-                            Développement
-                        </h3>
-
+                    <div class="card skills-card reveal">
+                        <h3><span class="icon"><svg aria-hidden="true"><use href="#i-code"/></svg></span>Développement</h3>
                         <div class="skills-list">
-
-                            <span class="skill">
-                                Python
-                            </span>
-
-                            <span class="skill">
-                                JavaScript
-                            </span>
-
-                            <span class="skill">
-                                React
-                            </span>
-
-                            <span class="skill">
-                                TypeScript
-                            </span>
-
-                            <span class="skill">
-                                SQL
-                            </span>
-
-                            <span class="skill">
-                                GDScript
-                            </span>
-
-                            <span class="skill">
-                                HTML
-                            </span>
-
-                            <span class="skill">
-                                CSS
-                            </span>
-
+                            <span class="skill">Python</span>
+                            <span class="skill">JavaScript</span>
+                            <span class="skill">TypeScript</span>
+                            <span class="skill">React</span>
+                            <span class="skill">SQL</span>
+                            <span class="skill">HTML</span>
+                            <span class="skill">CSS</span>
                         </div>
-
                     </div>
 
-
-                    <div class="card skills-card">
-
-                        <h3>
-                            Outils & environnement
-                        </h3>
-
+                    <div class="card skills-card reveal">
+                        <h3><span class="icon"><svg aria-hidden="true"><use href="#i-gamepad"/></svg></span>Jeux vidéo &amp; mobile</h3>
                         <div class="skills-list">
-
-                            <span class="skill">
-                                Git
-                            </span>
-
-                            <span class="skill">
-                                GitHub
-                            </span>
-
-                            <span class="skill">
-                                Linux
-                            </span>
-
-                            <span class="skill">
-                                Windows
-                            </span>
-
-                            <span class="skill">
-                                Godot
-                            </span>
-
-                            <span class="skill">
-                                VS Code
-                            </span>
-
-                            <span class="skill">
-                                Android
-                            </span>
-
+                            <span class="skill">Godot</span>
+                            <span class="skill">GDScript</span>
+                            <span class="skill">Android</span>
+                            <span class="skill">Google Play Console</span>
+                            <span class="skill">Game design</span>
                         </div>
+                    </div>
 
+                    <div class="card skills-card reveal">
+                        <h3><span class="icon"><svg aria-hidden="true"><use href="#i-tool"/></svg></span>Outils &amp; environnement</h3>
+                        <div class="skills-list">
+                            <span class="skill">Git</span>
+                            <span class="skill">GitHub</span>
+                            <span class="skill">Linux</span>
+                            <span class="skill">Windows</span>
+                            <span class="skill">VS Code</span>
+                        </div>
                     </div>
 
                 </div>
 
             </div>
-
         </section>
 
 
@@ -1845,44 +3004,41 @@
         ========================= -->
 
         <section id="contact">
-
             <div class="container">
 
-                <div class="card contact-card">
+                <div class="card contact-card reveal">
 
-                    <h2>
-                        À la recherche d'un stage
-                    </h2>
-
+                    <span class="section-label">Contact</span>
+                    <h2>À la recherche d'un stage</h2>
                     <p>
-                        Je suis actuellement à la recherche d'un stage
-                        en développement informatique. N'hésitez pas
-                        à me contacter pour échanger autour d'une
-                        opportunité de stage.
+                        Je suis actuellement à la recherche d'un stage en développement informatique.
+                        N'hésitez pas à me contacter pour échanger autour d'une opportunité de stage.
                     </p>
 
                     <div class="contact-links">
-
-                        <a
-                            <a href="mailto:raphaelmarc.b@gmail.com"
-                            class="button button-primary"
-                        >
+                        <a href="mailto:raphaelmarc.b@gmail.com" class="button button-primary">
+                            <svg aria-hidden="true"><use href="#i-mail"/></svg>
                             Me contacter
                         </a>
-
-                        <a
-                            href="https://www.linkedin.com/in/raphael-blanzat-a46655437/"
-                            class="button button-secondary"
-                        >
+                        <a href="https://www.linkedin.com/in/raphael-blanzat-a46655437/" class="button button-secondary" target="_blank" rel="noopener">
+                            <svg aria-hidden="true"><use href="#i-linkedin"/></svg>
                             LinkedIn
                         </a>
-
+                        <a href="https://github.com/raphaelblanzat" class="button button-secondary" target="_blank" rel="noopener">
+                            <svg aria-hidden="true"><use href="#i-github"/></svg>
+                            GitHub
+                        </a>
+                        <a href="CV_Raphael_Blanzat.pdf" class="button button-secondary" target="_blank" rel="noopener">
+                            <svg aria-hidden="true"><use href="#i-file"/></svg>
+                            CV (PDF)
+                        </a>
                     </div>
+
+                    <a href="mailto:raphaelmarc.b@gmail.com" class="contact-email">raphaelmarc.b@gmail.com</a>
 
                 </div>
 
             </div>
-
         </section>
 
     </main>
@@ -1893,14 +3049,234 @@
     ========================= -->
 
     <footer>
-
-        <div class="container">
-
-            © 2026 Raphaël Blanzat — Portfolio
-
+        <div class="container footer-inner">
+            <span>© <span id="year">2026</span> Raphaël Blanzat — Portfolio</span>
+            <div class="footer-links">
+                <a href="https://github.com/raphaelblanzat" target="_blank" rel="noopener" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+                <a href="https://www.linkedin.com/in/raphael-blanzat-a46655437/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+                <a href="https://play.google.com/store/apps/dev?id=8042980519563523044" target="_blank" rel="noopener" aria-label="Sylvarions Games sur Google Play"><svg aria-hidden="true"><use href="#i-play"/></svg></a>
+                <a href="mailto:raphaelmarc.b@gmail.com" aria-label="E-mail"><svg aria-hidden="true"><use href="#i-mail"/></svg></a>
+            </div>
         </div>
-
     </footer>
+
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" hidden>
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Fermer">
+            <svg aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+        <button class="lightbox-nav prev" id="lightbox-prev" type="button" aria-label="Image précédente">
+            <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <img id="lightbox-img" alt="">
+        <button class="lightbox-nav next" id="lightbox-next" type="button" aria-label="Image suivante">
+            <svg aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <p class="lightbox-caption"><span id="lightbox-count"></span><span id="lightbox-caption"></span></p>
+    </div>
+
+
+    <script>
+        document.body.classList.remove("no-js");
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Navigation : ombre au défilement, menu mobile, lien actif
+        const nav = document.getElementById("nav");
+        const navToggle = document.getElementById("nav-toggle");
+        const navLinks = document.getElementById("nav-links");
+
+        const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 10);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        const closeMenu = () => {
+            navLinks.classList.remove("open");
+            navToggle.setAttribute("aria-expanded", "false");
+            navToggle.setAttribute("aria-label", "Ouvrir le menu");
+        };
+
+        navToggle.addEventListener("click", () => {
+            const open = navLinks.classList.toggle("open");
+            navToggle.setAttribute("aria-expanded", String(open));
+            navToggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+
+        const sectionLinks = new Map(
+            [...navLinks.querySelectorAll("a")].map(a => [a.getAttribute("href").slice(1), a])
+        );
+
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                sectionLinks.forEach(a => a.classList.remove("active"));
+                sectionLinks.get(entry.target.id)?.classList.add("active");
+            });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+
+        document.querySelectorAll("main section[id]").forEach(s => sectionObserver.observe(s));
+
+        // Apparition au défilement
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        // Mes jeux : panneau repliable et filtres
+        const gamesToggle = document.getElementById("games-toggle");
+        const gamesPanel = document.getElementById("games-panel");
+        const gamesHint = document.getElementById("games-toggle-hint");
+        const gameCards = [...gamesPanel.querySelectorAll(".game-card")];
+        const filters = [...gamesPanel.querySelectorAll(".filter")];
+
+        gamesPanel.inert = true;
+
+        gamesToggle.addEventListener("click", () => {
+            const open = gamesPanel.classList.toggle("open");
+            gamesPanel.inert = !open;
+            gamesToggle.setAttribute("aria-expanded", String(open));
+            gamesHint.textContent = open ? "Masquer la liste" : "Afficher la liste complète";
+        });
+
+        const countOf = status => status === "all"
+            ? gameCards.length
+            : gameCards.filter(c => c.dataset.status === status).length;
+
+        filters.forEach(btn => {
+            const n = countOf(btn.dataset.filter);
+            btn.querySelector(".count").textContent = ` ${n}`;
+            if (n === 0) btn.hidden = true;
+
+            btn.addEventListener("click", () => {
+                closeDetails();
+                filters.forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+                gameCards.forEach(card => {
+                    card.hidden = btn.dataset.filter !== "all" && card.dataset.status !== btn.dataset.filter;
+                });
+            });
+        });
+
+        // Fiches détaillées : une seule ouverte à la fois
+        const detailButtons = [...gamesPanel.querySelectorAll(".details-btn")];
+
+        const closeDetails = () => {
+            detailButtons.forEach(btn => {
+                btn.setAttribute("aria-expanded", "false");
+                btn.closest(".game-card").classList.remove("active");
+                document.getElementById(btn.getAttribute("aria-controls")).hidden = true;
+            });
+        };
+
+        detailButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const wasOpen = btn.getAttribute("aria-expanded") === "true";
+                closeDetails();
+                if (wasOpen) return;
+
+                const detail = document.getElementById(btn.getAttribute("aria-controls"));
+                btn.setAttribute("aria-expanded", "true");
+                btn.closest(".game-card").classList.add("active");
+                detail.hidden = false;
+                detail.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        });
+
+        gamesPanel.querySelectorAll(".detail-close, .detail-close-bottom").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const card = gamesPanel.querySelector(".game-card.active");
+                closeDetails();
+                card?.scrollIntoView({ behavior: "smooth", block: "center" });
+            });
+        });
+
+        document.querySelectorAll("[data-count]").forEach(el => {
+            el.textContent = countOf(el.dataset.count);
+        });
+
+        // Lightbox des captures
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        const lightboxClose = document.getElementById("lightbox-close");
+        const lightboxCount = document.getElementById("lightbox-count");
+        const lightboxPrev = document.getElementById("lightbox-prev");
+        const lightboxNext = document.getElementById("lightbox-next");
+        let lastFocus = null;
+        let lightboxSet = [];
+        let lightboxIndex = 0;
+
+        // Les captures d'une même fiche forment une série qu'on fait défiler
+        const showLightboxImage = () => {
+            const btn = lightboxSet[lightboxIndex];
+            const img = btn.querySelector("img");
+            const caption = btn.closest("figure")?.querySelector("figcaption")?.textContent || img.alt;
+            lightboxImg.src = btn.dataset.full || img.currentSrc || img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = caption;
+            const many = lightboxSet.length > 1;
+            lightboxCount.textContent = many ? `${lightboxIndex + 1} / ${lightboxSet.length} · ` : "";
+            lightboxPrev.hidden = lightboxNext.hidden = !many;
+        };
+
+        const openLightbox = btn => {
+            lastFocus = document.activeElement;
+            const scope = btn.closest(".game-sheet, .project-media") || document;
+            lightboxSet = [...scope.querySelectorAll(".gallery-image")];
+            lightboxIndex = Math.max(0, lightboxSet.indexOf(btn));
+            showLightboxImage();
+            lightbox.hidden = false;
+            requestAnimationFrame(() => lightbox.classList.add("open"));
+            document.body.classList.add("no-scroll");
+            lightboxClose.focus();
+        };
+
+        const stepLightbox = delta => {
+            lightboxIndex = (lightboxIndex + delta + lightboxSet.length) % lightboxSet.length;
+            showLightboxImage();
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove("open");
+            document.body.classList.remove("no-scroll");
+            setTimeout(() => { lightbox.hidden = true; }, 300);
+            lastFocus?.focus();
+        };
+
+        document.querySelectorAll(".gallery-image").forEach(btn => {
+            btn.addEventListener("click", () => openLightbox(btn));
+        });
+
+        lightbox.addEventListener("click", e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        lightboxClose.addEventListener("click", closeLightbox);
+        lightboxPrev.addEventListener("click", () => stepLightbox(-1));
+        lightboxNext.addEventListener("click", () => stepLightbox(1));
+
+        let touchStartX = null;
+        lightbox.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        lightbox.addEventListener("touchend", e => {
+            if (touchStartX === null) return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50 && lightboxSet.length > 1) stepLightbox(dx < 0 ? 1 : -1);
+            touchStartX = null;
+        });
+
+        document.addEventListener("keydown", e => {
+            const open = lightbox.classList.contains("open");
+            if (open && e.key === "ArrowRight") stepLightbox(1);
+            else if (open && e.key === "ArrowLeft") stepLightbox(-1);
+            else if (e.key === "Escape") open ? closeLightbox() : closeMenu();
+        });
+    </script>
 
 </body>
 </html>
