@@ -1713,6 +1713,55 @@
             line-height: 1.6;
         }
 
+        .sheet-highlights {
+            margin-top: -20px;
+        }
+
+        .highlights {
+            display: grid;
+            gap: 14px;
+        }
+
+        .highlights.landscape {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .highlights.portrait {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .highlights.portrait .gallery-image {
+            aspect-ratio: 9 / 16;
+        }
+
+        .see-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            color: var(--accent-light);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .see-all::after {
+            content: "↓";
+            transition: transform 0.25s ease;
+        }
+
+        .see-all:hover::after {
+            transform: translateY(3px);
+        }
+
+        .mechanics.collapsed .mechanic:nth-child(n + 7) {
+            display: none;
+        }
+
+        .mechanics-more {
+            margin-top: 16px;
+        }
+
         .gallery-group + .gallery-group {
             margin-top: 34px;
         }
@@ -1807,6 +1856,26 @@
 
             .shots figcaption {
                 font-size: 0.72rem;
+            }
+
+            .sheet-highlights {
+                margin-top: -12px;
+            }
+
+            .highlights {
+                gap: 10px;
+            }
+
+            .highlights.landscape {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .highlights.portrait {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .highlights.portrait .gallery-image:nth-child(n + 4) {
+                display: none;
             }
 
             .lightbox-nav {
@@ -2471,21 +2540,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="sheet-section">
-                                            <h4>Comment ça marche</h4>
-                                            <p class="section-intro">Une boucle simple à prendre en main, avec plusieurs couches de progression pour garder un objectif à chaque instant.</p>
-                                            <div class="mechanics">
-                                                <div class="mechanic"><div class="emoji">⚡</div><h5>Produire de l'énergie</h5><p>Chaque toucher sur l'éclair produit de l'énergie. Un clic rapporte 1 + 10 % de la production par seconde : il reste utile du début à la fin.</p></div>
-                                                <div class="mechanic"><div class="emoji">🔋</div><h5>Six installations</h5><p>Pile, Générateur, Réacteur, Turbine à plasma, Cœur de fusion et Singularité. Chacune se révèle au fil de la partie et coûte 15 % plus cher à chaque achat. Achat par ×1, ×10, ×100 ou au maximum.</p></div>
-                                                <div class="mechanic"><div class="emoji">🧪</div><h5>Laboratoire</h5><p>Des améliorations ×2 pour chaque installation, et trois mutations à faire évoluer : chance, durée et puissance des surcharges.</p></div>
-                                                <div class="mechanic"><div class="emoji">🌩️</div><h5>Surcharges</h5><p>Une anomalie énergétique peut se déclencher à chaque seconde et multiplier toute la production pendant quelques secondes. L'écran s'emballe et l'éclair pulse.</p></div>
-                                                <div class="mechanic"><div class="emoji">🎯</div><h5>Objectifs</h5><p>Un objectif court et un objectif long, générés selon la phase de jeu (cliquer, déclencher des surcharges, posséder des installations…), avec une récompense en énergie.</p></div>
-                                                <div class="mechanic"><div class="emoji">💎</div><h5>Prestige</h5><p>Relancer la station rapporte des cristaux d'énergie : +10 % de production chacun, pour toutes les parties suivantes. Histoire, succès et statistiques sont conservés.</p></div>
-                                                <div class="mechanic"><div class="emoji">🏆</div><h5>49 succès</h5><p>Énergie produite, installations, clics, surcharges, mutations, prestiges… Chaque succès ajoute +1 % de production de façon permanente.</p></div>
-                                                <div class="mechanic"><div class="emoji">📖</div><h5>Histoire à restaurer</h5><p>Dix illustrations à révéler en produisant toujours plus. Chaque chapitre débloqué déclenche une courte cinématique.</p></div>
-                                                <div class="mechanic"><div class="emoji">🌙</div><h5>Production hors ligne</h5><p>Les installations continuent de produire jusqu'à 2 h quand le jeu est fermé. Une fenêtre résume les gains au retour.</p></div>
-                                                <div class="mechanic"><div class="emoji">🚀</div><h5>Accélérateur</h5><p>Une publicité facultative double la production pendant 10 minutes, cumulable jusqu'à 2 heures.</p></div>
+                                        <div class="sheet-highlights">
+                                            <div class="highlights landscape">
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Écran principal avec l'éclair, la production et les objectifs"><img src="images/energie/jeu/base.jpg" alt="Écran principal avec l'éclair, la production et les objectifs" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Surcharge en cours sur l'écran principal"><img src="images/energie/jeu/surcharge.jpg" alt="Surcharge en cours sur l'écran principal" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Les six installations débloquées"><img src="images/energie/jeu/installations-avancees.jpg" alt="Les six installations débloquées" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Laboratoire : mutations et améliorations"><img src="images/energie/jeu/laboratoire.jpg" alt="Laboratoire : mutations et améliorations" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Prestige avec 14 cristaux"><img src="images/energie/jeu/prestige-avance.jpg" alt="Prestige avec 14 cristaux" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Chapitre 9 : La véritable forme"><img src="images/energie/jeu/histoire-09.jpg" alt="Chapitre 9 : La véritable forme" loading="lazy" decoding="async"></button>
                                             </div>
+                                            <a class="see-all" href="#galerie-energie">Voir les 22 captures</a>
                                         </div>
 
                                         <div class="sheet-section">
@@ -2502,7 +2566,25 @@
                                         </div>
 
                                         <div class="sheet-section">
-                                            <h4>En images</h4>
+                                            <h4>Comment ça marche</h4>
+                                            <p class="section-intro">Une boucle simple à prendre en main, avec plusieurs couches de progression pour garder un objectif à chaque instant.</p>
+                                            <div class="mechanics collapsed">
+                                                <div class="mechanic"><div class="emoji">⚡</div><h5>Produire de l'énergie</h5><p>Chaque toucher sur l'éclair produit de l'énergie. Un clic rapporte 1 + 10 % de la production par seconde : il reste utile du début à la fin.</p></div>
+                                                <div class="mechanic"><div class="emoji">🔋</div><h5>Six installations</h5><p>Pile, Générateur, Réacteur, Turbine à plasma, Cœur de fusion et Singularité. Chacune se révèle au fil de la partie et coûte 15 % plus cher à chaque achat. Achat par ×1, ×10, ×100 ou au maximum.</p></div>
+                                                <div class="mechanic"><div class="emoji">🧪</div><h5>Laboratoire</h5><p>Des améliorations ×2 pour chaque installation, et trois mutations à faire évoluer : chance, durée et puissance des surcharges.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌩️</div><h5>Surcharges</h5><p>Une anomalie énergétique peut se déclencher à chaque seconde et multiplier toute la production pendant quelques secondes. L'écran s'emballe et l'éclair pulse.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎯</div><h5>Objectifs</h5><p>Un objectif court et un objectif long, générés selon la phase de jeu (cliquer, déclencher des surcharges, posséder des installations…), avec une récompense en énergie.</p></div>
+                                                <div class="mechanic"><div class="emoji">💎</div><h5>Prestige</h5><p>Relancer la station rapporte des cristaux d'énergie : +10 % de production chacun, pour toutes les parties suivantes. Histoire, succès et statistiques sont conservés.</p></div>
+                                                <div class="mechanic"><div class="emoji">🏆</div><h5>49 succès</h5><p>Énergie produite, installations, clics, surcharges, mutations, prestiges… Chaque succès ajoute +1 % de production de façon permanente.</p></div>
+                                                <div class="mechanic"><div class="emoji">📖</div><h5>Histoire à restaurer</h5><p>Dix illustrations à révéler en produisant toujours plus. Chaque chapitre débloqué déclenche une courte cinématique.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌙</div><h5>Production hors ligne</h5><p>Les installations continuent de produire jusqu'à 2 h quand le jeu est fermé. Une fenêtre résume les gains au retour.</p></div>
+                                                <div class="mechanic"><div class="emoji">🚀</div><h5>Accélérateur</h5><p>Une publicité facultative double la production pendant 10 minutes, cumulable jusqu'à 2 heures.</p></div>
+                                            </div>
+                                            <button class="button button-secondary mechanics-more" type="button" aria-expanded="false" data-more="Voir toutes les mécaniques (10)" data-less="Réduire">Voir toutes les mécaniques (10)</button>
+                                        </div>
+
+                                        <div class="sheet-section sheet-gallery" id="galerie-energie">
+                                            <h4>Galerie complète</h4>
                                             <p class="section-intro">Captures de la version 2.0.0. Cliquez sur une image pour l'agrandir et faire défiler la galerie.</p>
 
                                             <div class="gallery-group">
@@ -2614,21 +2696,15 @@
                                             </div>
                                         </div>
 
-                                        <div class="sheet-section">
-                                            <h4>Comment ça marche</h4>
-                                            <p class="section-intro">Une progression pensée pour qu'il y ait toujours une boutique à acheter, un palier à viser ou une rue à débloquer.</p>
-                                            <div class="mechanics">
-                                                <div class="mechanic"><div class="emoji">💰</div><h5>Revenus passifs</h5><p>Chaque boutique produit des pièces chaque seconde. Les boutiques suivantes coûtent ×2,7 plus cher mais rapportent ×2,36 plus : la courbe reste toujours motivante.</p></div>
-                                                <div class="mechanic"><div class="emoji">⬆️</div><h5>Améliorations</h5><p>Chaque niveau augmente les revenus de la boutique (+15 % de prix par niveau). Achat par ×1, ×10, ×100 ou MAX en un seul bouton.</p></div>
-                                                <div class="mechanic"><div class="emoji">🏅</div><h5>Paliers</h5><p>Aux niveaux 10, 25, 50 et 100, les revenus de la boutique doublent, avec une animation et un son dédiés.</p></div>
-                                                <div class="mechanic"><div class="emoji">🛣️</div><h5>Dix rues</h5><p>Débloquer une rue ouvre un nouvel univers graphique et de nouvelles boutiques. La carte permet de revenir sur les anciennes rues.</p></div>
-                                                <div class="mechanic"><div class="emoji">🌙</div><h5>Gains hors ligne</h5><p>Les boutiques rapportent 50 % de leurs revenus pendant l'absence du joueur, jusqu'à 4 heures, avec un récapitulatif au retour.</p></div>
-                                                <div class="mechanic"><div class="emoji">🚐</div><h5>Le camion VHS</h5><p>Il traverse la rue toutes les 15 minutes : le toucher propose un bonus de pièces en échange d'une publicité, toujours facultative.</p></div>
-                                                <div class="mechanic"><div class="emoji">⚡</div><h5>Boost ×2</h5><p>Une publicité double tous les revenus pendant 30 minutes, cumulable jusqu'à 4 heures.</p></div>
-                                                <div class="mechanic"><div class="emoji">🎁</div><h5>Amélioration gratuite</h5><p>Toutes les 15 minutes : +5 niveaux offerts à la boutique de son choix.</p></div>
-                                                <div class="mechanic"><div class="emoji">🎓</div><h5>Tutoriel guidé</h5><p>Les premières minutes guident le joueur : acheter, améliorer, puis attraper le camion.</p></div>
-                                                <div class="mechanic"><div class="emoji">👑</div><h5>Titre de Magnat</h5><p>Le but ultime : les 65 boutiques au niveau 25. On peut ensuite continuer jusqu'au niveau 999.</p></div>
+                                        <div class="sheet-highlights">
+                                            <div class="highlights portrait">
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 1 : Miami Néon"><img src="images/shop-street/jeu/rue-01-miami-neon.jpg" alt="Rue 1 : Miami Néon" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 4 : Tokyo Pop"><img src="images/shop-street/jeu/rue-04-tokyo-pop.jpg" alt="Rue 4 : Tokyo Pop" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 7 : Ski Fluo"><img src="images/shop-street/jeu/rue-07-ski-fluo.jpg" alt="Rue 7 : Ski Fluo" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 9 : Station Lunaire"><img src="images/shop-street/jeu/rue-09-station-lunaire.jpg" alt="Rue 9 : Station Lunaire" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 10 : Wall Street Yuppie"><img src="images/shop-street/jeu/rue-10-wall-street.jpg" alt="Rue 10 : Wall Street Yuppie" loading="lazy" decoding="async"></button>
                                             </div>
+                                            <a class="see-all" href="#galerie-shop-street">Voir les 22 captures</a>
                                         </div>
 
                                         <div class="sheet-section">
@@ -2645,7 +2721,25 @@
                                         </div>
 
                                         <div class="sheet-section">
-                                            <h4>En images</h4>
+                                            <h4>Comment ça marche</h4>
+                                            <p class="section-intro">Une progression pensée pour qu'il y ait toujours une boutique à acheter, un palier à viser ou une rue à débloquer.</p>
+                                            <div class="mechanics collapsed">
+                                                <div class="mechanic"><div class="emoji">💰</div><h5>Revenus passifs</h5><p>Chaque boutique produit des pièces chaque seconde. Les boutiques suivantes coûtent ×2,7 plus cher mais rapportent ×2,36 plus : la courbe reste toujours motivante.</p></div>
+                                                <div class="mechanic"><div class="emoji">⬆️</div><h5>Améliorations</h5><p>Chaque niveau augmente les revenus de la boutique (+15 % de prix par niveau). Achat par ×1, ×10, ×100 ou MAX en un seul bouton.</p></div>
+                                                <div class="mechanic"><div class="emoji">🏅</div><h5>Paliers</h5><p>Aux niveaux 10, 25, 50 et 100, les revenus de la boutique doublent, avec une animation et un son dédiés.</p></div>
+                                                <div class="mechanic"><div class="emoji">🛣️</div><h5>Dix rues</h5><p>Débloquer une rue ouvre un nouvel univers graphique et de nouvelles boutiques. La carte permet de revenir sur les anciennes rues.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌙</div><h5>Gains hors ligne</h5><p>Les boutiques rapportent 50 % de leurs revenus pendant l'absence du joueur, jusqu'à 4 heures, avec un récapitulatif au retour.</p></div>
+                                                <div class="mechanic"><div class="emoji">🚐</div><h5>Le camion VHS</h5><p>Il traverse la rue toutes les 15 minutes : le toucher propose un bonus de pièces en échange d'une publicité, toujours facultative.</p></div>
+                                                <div class="mechanic"><div class="emoji">⚡</div><h5>Boost ×2</h5><p>Une publicité double tous les revenus pendant 30 minutes, cumulable jusqu'à 4 heures.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎁</div><h5>Amélioration gratuite</h5><p>Toutes les 15 minutes : +5 niveaux offerts à la boutique de son choix.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎓</div><h5>Tutoriel guidé</h5><p>Les premières minutes guident le joueur : acheter, améliorer, puis attraper le camion.</p></div>
+                                                <div class="mechanic"><div class="emoji">👑</div><h5>Titre de Magnat</h5><p>Le but ultime : les 65 boutiques au niveau 25. On peut ensuite continuer jusqu'au niveau 999.</p></div>
+                                            </div>
+                                            <button class="button button-secondary mechanics-more" type="button" aria-expanded="false" data-more="Voir toutes les mécaniques (10)" data-less="Réduire">Voir toutes les mécaniques (10)</button>
+                                        </div>
+
+                                        <div class="sheet-section sheet-gallery" id="galerie-shop-street">
+                                            <h4>Galerie complète</h4>
                                             <p class="section-intro">Captures prises pendant une partie complète, de la première boutique jusqu'au titre de Magnat. Cliquez pour agrandir et faire défiler.</p>
 
                                             <div class="gallery-group">
@@ -2757,22 +2851,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="sheet-section">
-                                            <h4>Comment ça marche</h4>
-                                            <p class="section-intro">Un jeu calme et vivant : il y a toujours quelque chose à faire pendant les attentes, sans jamais accélérer artificiellement la partie.</p>
-                                            <div class="mechanics">
-                                                <div class="mechanic"><div class="emoji">👥</div><h5>Des villageois uniques</h5><p>Chacun a un prénom, une apparence, des compétences et des affinités. Discuter avec eux dévoile peu à peu leur histoire, et ils formulent leurs propres petites demandes.</p></div>
-                                                <div class="mechanic"><div class="emoji">🪓</div><h5>Missions</h5><p>Réparer, produire, construire, abattre, accueillir un nouveau venu. Les villageois marchent jusqu'au lieu de travail, attendent que l'équipe soit au complet, travaillent puis rentrent.</p></div>
-                                                <div class="mechanic"><div class="emoji">🏗️</div><h5>Construction libre</h5><p>On choisit l'emplacement de chaque bâtiment sur la carte, on lance le chantier, et on peut déplacer ses bâtiments à tout moment.</p></div>
-                                                <div class="mechanic"><div class="emoji">⚙️</div><h5>Chaînes de production</h5><p>Le blé devient farine au moulin puis pain à la boulangerie. La laine passe par la filature puis l'atelier de tissage. Le miel du rucher donne la cire, puis les bougies.</p></div>
-                                                <div class="mechanic"><div class="emoji">🌳</div><h5>Arbre de compétences</h5><p>Sept branches (bois, eau, pierre, réserve, champ, moulin, boulangerie). Une seule recherche à la fois pour tout le village, qui avance même jeu fermé et s'annule sans perte.</p></div>
-                                                <div class="mechanic"><div class="emoji">🔥</div><h5>Le feu de camp</h5><p>Le cœur du village : le repas partagé et la veillée aux bougies donnent chacun un bonus de production pendant une heure.</p></div>
-                                                <div class="mechanic"><div class="emoji">🍄</div><h5>Cueillette et trésors</h5><p>Des trouvailles scintillent sur la carte (12 à collectionner), et 8 trésors de l'ancien village attendent d'être retrouvés, chacun avec son histoire.</p></div>
-                                                <div class="mechanic"><div class="emoji">🎯</div><h5>Objectifs du jour et journal</h5><p>Des objectifs quotidiens renouvelés et un journal qui raconte tout ce qui se passe dans le village.</p></div>
-                                                <div class="mechanic"><div class="emoji">🌗</div><h5>Jour et nuit</h5><p>Le ciel suit l'heure réelle du téléphone : aube, journée, crépuscule et nuit. Le feu de camp et les lanternes éclairent le village dans l'obscurité.</p></div>
-                                                <div class="mechanic"><div class="emoji">🐾</div><h5>Animaux de la vallée</h5><p>Chats et chiens près du camp, poules, vaches, cochons et poissons dans la rivière. Les toucher fait apparaître un petit cœur.</p></div>
-                                                <div class="mechanic"><div class="emoji">📖</div><h5>Une histoire</h5><p>Une introduction, le Carnet d'Aube et ses pages à débloquer, puis la Fête des Lanternes, où les villageois se réunissent pour lâcher des lanternes dans la nuit.</p></div>
+                                        <div class="sheet-highlights">
+                                            <div class="highlights landscape">
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Vue du village avec ses bâtiments et villageois"><img src="images/haubeolia/jeu/village.jpg" alt="Vue du village avec ses bâtiments et villageois" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Le village la nuit, éclairé par le feu de camp"><img src="images/haubeolia/jeu/nuit.jpg" alt="Le village la nuit, éclairé par le feu de camp" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Menu de la scierie"><img src="images/haubeolia/jeu/menu-scierie.jpg" alt="Menu de la scierie" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Fiche du villageois Bertrand"><img src="images/haubeolia/jeu/fiche-villageois.jpg" alt="Fiche du villageois Bertrand" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Arbre de compétences"><img src="images/haubeolia/jeu/arbre-competences.jpg" alt="Arbre de compétences" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Menu de construction"><img src="images/haubeolia/jeu/menu-construction.jpg" alt="Menu de construction" loading="lazy" decoding="async"></button>
                                             </div>
+                                            <a class="see-all" href="#galerie-haubeolia">Voir les 24 captures</a>
                                         </div>
 
                                         <div class="sheet-section">
@@ -2789,7 +2877,26 @@
                                         </div>
 
                                         <div class="sheet-section">
-                                            <h4>En images</h4>
+                                            <h4>Comment ça marche</h4>
+                                            <p class="section-intro">Un jeu calme et vivant : il y a toujours quelque chose à faire pendant les attentes, sans jamais accélérer artificiellement la partie.</p>
+                                            <div class="mechanics collapsed">
+                                                <div class="mechanic"><div class="emoji">👥</div><h5>Des villageois uniques</h5><p>Chacun a un prénom, une apparence, des compétences et des affinités. Discuter avec eux dévoile peu à peu leur histoire, et ils formulent leurs propres petites demandes.</p></div>
+                                                <div class="mechanic"><div class="emoji">🪓</div><h5>Missions</h5><p>Réparer, produire, construire, abattre, accueillir un nouveau venu. Les villageois marchent jusqu'au lieu de travail, attendent que l'équipe soit au complet, travaillent puis rentrent.</p></div>
+                                                <div class="mechanic"><div class="emoji">🏗️</div><h5>Construction libre</h5><p>On choisit l'emplacement de chaque bâtiment sur la carte, on lance le chantier, et on peut déplacer ses bâtiments à tout moment.</p></div>
+                                                <div class="mechanic"><div class="emoji">⚙️</div><h5>Chaînes de production</h5><p>Le blé devient farine au moulin puis pain à la boulangerie. La laine passe par la filature puis l'atelier de tissage. Le miel du rucher donne la cire, puis les bougies.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌳</div><h5>Arbre de compétences</h5><p>Sept branches (bois, eau, pierre, réserve, champ, moulin, boulangerie). Une seule recherche à la fois pour tout le village, qui avance même jeu fermé et s'annule sans perte.</p></div>
+                                                <div class="mechanic"><div class="emoji">🔥</div><h5>Le feu de camp</h5><p>Le cœur du village : le repas partagé et la veillée aux bougies donnent chacun un bonus de production pendant une heure.</p></div>
+                                                <div class="mechanic"><div class="emoji">🍄</div><h5>Cueillette et trésors</h5><p>Des trouvailles scintillent sur la carte (12 à collectionner), et 8 trésors de l'ancien village attendent d'être retrouvés, chacun avec son histoire.</p></div>
+                                                <div class="mechanic"><div class="emoji">🎯</div><h5>Objectifs du jour et journal</h5><p>Des objectifs quotidiens renouvelés et un journal qui raconte tout ce qui se passe dans le village.</p></div>
+                                                <div class="mechanic"><div class="emoji">🌗</div><h5>Jour et nuit</h5><p>Le ciel suit l'heure réelle du téléphone : aube, journée, crépuscule et nuit. Le feu de camp et les lanternes éclairent le village dans l'obscurité.</p></div>
+                                                <div class="mechanic"><div class="emoji">🐾</div><h5>Animaux de la vallée</h5><p>Chats et chiens près du camp, poules, vaches, cochons et poissons dans la rivière. Les toucher fait apparaître un petit cœur.</p></div>
+                                                <div class="mechanic"><div class="emoji">📖</div><h5>Une histoire</h5><p>Une introduction, le Carnet d'Aube et ses pages à débloquer, puis la Fête des Lanternes, où les villageois se réunissent pour lâcher des lanternes dans la nuit.</p></div>
+                                            </div>
+                                            <button class="button button-secondary mechanics-more" type="button" aria-expanded="false" data-more="Voir toutes les mécaniques (11)" data-less="Réduire">Voir toutes les mécaniques (11)</button>
+                                        </div>
+
+                                        <div class="sheet-section sheet-gallery" id="galerie-haubeolia">
+                                            <h4>Galerie complète</h4>
                                             <p class="section-intro">Captures d'une partie en cours. Cliquez pour agrandir et faire défiler.</p>
 
                                             <div class="gallery-group">
@@ -2911,8 +3018,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="sheet-section">
-                                            <h4>En images</h4>
+                                        <div class="sheet-section sheet-gallery" id="galerie-dragon">
+                                            <h4>Galerie complète</h4>
                                             <div class="shots landscape">
                                                 <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran titre"><img src="images/jeu1/image1.jpg" alt="Écran titre du jeu Le Souffle du Dragon" width="1280" height="722" loading="lazy" decoding="async"></button><figcaption>Écran titre</figcaption></figure>
                                                 <figure><button class="gallery-image" type="button" aria-label="Agrandir : en jeu"><img src="images/jeu1/image2.jpg" alt="Capture du jeu narratif Le Souffle du Dragon" width="1280" height="722" loading="lazy" decoding="async"></button><figcaption>En jeu</figcaption></figure>
@@ -3197,6 +3304,14 @@
             });
         });
 
+        document.querySelectorAll(".mechanics-more").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const collapsed = btn.previousElementSibling.classList.toggle("collapsed");
+                btn.setAttribute("aria-expanded", String(!collapsed));
+                btn.textContent = collapsed ? btn.dataset.more : btn.dataset.less;
+            });
+        });
+
         document.querySelectorAll("[data-count]").forEach(el => {
             el.textContent = countOf(el.dataset.count);
         });
@@ -3228,9 +3343,13 @@
 
         const openLightbox = btn => {
             lastFocus = document.activeElement;
-            const scope = btn.closest(".game-sheet, .project-media") || document;
-            lightboxSet = [...scope.querySelectorAll(".gallery-image")];
-            lightboxIndex = Math.max(0, lightboxSet.indexOf(btn));
+            // Une capture phare ouvre la galerie complète de la fiche, à la même image
+            const sheet = btn.closest(".game-sheet");
+            const src = btn.querySelector("img").getAttribute("src");
+            lightboxSet = sheet
+                ? [...sheet.querySelectorAll(".sheet-gallery .gallery-image")]
+                : [...(btn.closest(".project-media") || document).querySelectorAll(".gallery-image")];
+            lightboxIndex = Math.max(0, lightboxSet.findIndex(b => b.querySelector("img").getAttribute("src") === src));
             showLightboxImage();
             lightbox.hidden = false;
             requestAnimationFrame(() => lightbox.classList.add("open"));
