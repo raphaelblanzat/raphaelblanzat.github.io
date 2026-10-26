@@ -1727,7 +1727,7 @@
         }
 
         .highlights.portrait {
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 220px));
         }
 
         .highlights.portrait .gallery-image {
@@ -1785,7 +1785,7 @@
         }
 
         .shots.portrait {
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         }
 
         .shots figure {
@@ -1872,10 +1872,6 @@
 
             .highlights.portrait {
                 grid-template-columns: repeat(3, 1fr);
-            }
-
-            .highlights.portrait .gallery-image:nth-child(n + 4) {
-                display: none;
             }
 
             .lightbox-nav {
@@ -2542,14 +2538,11 @@
 
                                         <div class="sheet-highlights">
                                             <div class="highlights landscape">
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Écran principal avec l'éclair, la production et les objectifs"><img src="images/energie/jeu/base.jpg" alt="Écran principal avec l'éclair, la production et les objectifs" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Surcharge en cours sur l'écran principal"><img src="images/energie/jeu/surcharge.jpg" alt="Surcharge en cours sur l'écran principal" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Les six installations débloquées"><img src="images/energie/jeu/installations-avancees.jpg" alt="Les six installations débloquées" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Laboratoire : mutations et améliorations"><img src="images/energie/jeu/laboratoire.jpg" alt="Laboratoire : mutations et améliorations" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Prestige avec 14 cristaux"><img src="images/energie/jeu/prestige-avance.jpg" alt="Prestige avec 14 cristaux" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Chapitre 9 : La véritable forme"><img src="images/energie/jeu/histoire-09.jpg" alt="Chapitre 9 : La véritable forme" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : écran principal"><img src="images/energie/jeu/base.jpg" alt="Écran principal avec l'éclair, la production et les objectifs" width="1280" height="720" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : toutes les installations"><img src="images/energie/jeu/installations-avancees.jpg" alt="Les six installations débloquées" width="1280" height="720" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : chapitre 9"><img src="images/energie/jeu/histoire-09.jpg" alt="Chapitre 9 : La véritable forme" width="1280" height="720" loading="lazy" decoding="async"></button>
                                             </div>
-                                            <a class="see-all" href="#galerie-energie">Voir les 22 captures</a>
+                                            <a class="see-all" href="#galerie-energie">Voir les 6 captures</a>
                                         </div>
 
                                         <div class="sheet-section">
@@ -2584,47 +2577,14 @@
                                         </div>
 
                                         <div class="sheet-section sheet-gallery" id="galerie-energie">
-                                            <h4>Galerie complète</h4>
-                                            <p class="section-intro">Captures de la version 2.0.0. Cliquez sur une image pour l'agrandir et faire défiler la galerie.</p>
-
-                                            <div class="gallery-group">
-                                                <h5>Écrans principaux</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran titre"><img src="images/energie/jeu/menu.jpg" alt="Écran titre d'Energie Station" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Écran titre</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran principal"><img src="images/energie/jeu/base.jpg" alt="Écran principal avec l'éclair, la production et les objectifs" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'écran principal : l'éclair, la production et les objectifs</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : partie avancée"><img src="images/energie/jeu/base-avancee.jpg" alt="Écran principal en fin de partie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une partie avancée : 48,6 milliards d'énergie</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : surcharge"><img src="images/energie/jeu/surcharge.jpg" alt="Surcharge en cours sur l'écran principal" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une surcharge en cours : la production est multipliée</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>Installations, laboratoire et prestige</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : installations"><img src="images/energie/jeu/installations.jpg" alt="Menu des installations en milieu de partie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les installations en milieu de partie</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : toutes les installations"><img src="images/energie/jeu/installations-avancees.jpg" alt="Les six installations débloquées" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les six installations, jusqu'à la Singularité</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : laboratoire"><img src="images/energie/jeu/laboratoire.jpg" alt="Laboratoire : mutations et améliorations" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le laboratoire : mutations de surcharge et améliorations ×2</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : laboratoire avancé"><img src="images/energie/jeu/laboratoire-avance.jpg" alt="Laboratoire en fin de partie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le laboratoire en fin de partie</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : prestige"><img src="images/energie/jeu/prestige.jpg" alt="Écran de prestige et cristaux d'énergie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le prestige : relancer la station pour des cristaux</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : prestige avancé"><img src="images/energie/jeu/prestige-avance.jpg" alt="Prestige avec 14 cristaux" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>14 cristaux : +140 % de production</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : succès"><img src="images/energie/jeu/succes.jpg" alt="Liste des succès et statistiques" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Succès et statistiques de la partie</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : succès avancés"><img src="images/energie/jeu/succes-avances.jpg" alt="42 succès sur 49 débloqués" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>42 succès sur 49 débloqués</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : accélérateur"><img src="images/energie/jeu/accelerateur.jpg" alt="Accélérateur : boost de production" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'accélérateur : production doublée pendant 10 minutes</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : options"><img src="images/energie/jeu/options.jpg" alt="Options : son et langue" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Options : son et langue</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>L'histoire</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 2"><img src="images/energie/jeu/histoire-02.jpg" alt="Chapitre 2 : Les premiers signes" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 2 — Les premiers signes</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 3"><img src="images/energie/jeu/histoire-03.jpg" alt="Chapitre 3 : La contamination" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 3 — La contamination</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 4"><img src="images/energie/jeu/histoire-04.jpg" alt="Chapitre 4 : Les cobayes" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 4 — Les cobayes</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 5"><img src="images/energie/jeu/histoire-05.jpg" alt="Chapitre 5 : Quelque chose grandit" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 5 — Quelque chose grandit</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 8"><img src="images/energie/jeu/histoire-08.jpg" alt="Chapitre 8 : L'exploitation" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 8 — L'exploitation</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 9"><img src="images/energie/jeu/histoire-09.jpg" alt="Chapitre 9 : La véritable forme" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 9 — La véritable forme</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 10"><img src="images/energie/jeu/histoire-10.jpg" alt="Chapitre 10 : La domination" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 10 — La domination</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : cinématique"><img src="images/energie/jeu/cinematique.jpg" alt="Cinématique de déblocage d'un chapitre" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La cinématique qui accompagne chaque nouveau chapitre</figcaption></figure>
-                                                </div>
+                                            <h4>En images</h4>
+                                            <div class="shots landscape">
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran principal"><img src="images/energie/jeu/base.jpg" alt="Écran principal avec l'éclair, la production et les objectifs" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'écran principal : l'éclair, la production et les objectifs</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : toutes les installations"><img src="images/energie/jeu/installations-avancees.jpg" alt="Les six installations débloquées" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les six installations, jusqu'à la Singularité</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : chapitre 9"><img src="images/energie/jeu/histoire-09.jpg" alt="Chapitre 9 : La véritable forme" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chapitre 9 — La véritable forme</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : surcharge"><img src="images/energie/jeu/surcharge.jpg" alt="Surcharge en cours sur l'écran principal" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une surcharge en cours : la production est multipliée</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : laboratoire"><img src="images/energie/jeu/laboratoire.jpg" alt="Laboratoire : mutations et améliorations" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le laboratoire : mutations de surcharge et améliorations ×2</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : prestige avancé"><img src="images/energie/jeu/prestige-avance.jpg" alt="Prestige avec 14 cristaux" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>14 cristaux : +140 % de production</figcaption></figure>
                                             </div>
                                         </div>
 
@@ -2698,13 +2658,11 @@
 
                                         <div class="sheet-highlights">
                                             <div class="highlights portrait">
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 1 : Miami Néon"><img src="images/shop-street/jeu/rue-01-miami-neon.jpg?v=2" alt="Rue 1 : Miami Néon" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 4 : Tokyo Pop"><img src="images/shop-street/jeu/rue-04-tokyo-pop.jpg?v=2" alt="Rue 4 : Tokyo Pop" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 7 : Ski Fluo"><img src="images/shop-street/jeu/rue-07-ski-fluo.jpg?v=2" alt="Rue 7 : Ski Fluo" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 9 : Station Lunaire"><img src="images/shop-street/jeu/rue-09-station-lunaire.jpg?v=2" alt="Rue 9 : Station Lunaire" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Rue 10 : Wall Street Yuppie"><img src="images/shop-street/jeu/rue-10-wall-street.jpg?v=2" alt="Rue 10 : Wall Street Yuppie" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Miami Néon"><img src="images/shop-street/jeu/rue-01-miami-neon.jpg?v=2" alt="Rue 1 : Miami Néon" width="480" height="853" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Ski Fluo"><img src="images/shop-street/jeu/rue-07-ski-fluo.jpg?v=2" alt="Rue 7 : Ski Fluo" width="480" height="853" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : Station Lunaire"><img src="images/shop-street/jeu/rue-09-station-lunaire.jpg?v=2" alt="Rue 9 : Station Lunaire" width="480" height="853" loading="lazy" decoding="async"></button>
                                             </div>
-                                            <a class="see-all" href="#galerie-shop-street">Voir les 22 captures</a>
+                                            <a class="see-all" href="#galerie-shop-street">Voir les 6 captures</a>
                                         </div>
 
                                         <div class="sheet-section">
@@ -2739,47 +2697,14 @@
                                         </div>
 
                                         <div class="sheet-section sheet-gallery" id="galerie-shop-street">
-                                            <h4>Galerie complète</h4>
-                                            <p class="section-intro">Captures prises pendant une partie complète, de la première boutique jusqu'au titre de Magnat. Cliquez pour agrandir et faire défiler.</p>
-
-                                            <div class="gallery-group">
-                                                <h5>Les débuts</h5>
-                                                <div class="shots portrait">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : tutoriel"><img src="images/shop-street/jeu/tutoriel.jpg?v=2" alt="Tutoriel : acheter le premier stand de glaces" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le tutoriel : acheter son premier stand de glaces</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : le camion arrive"><img src="images/shop-street/jeu/camion-tuto.jpg?v=2" alt="Le camion VHS traverse la rue" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le camion VHS traverse la rue</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : camion VHS"><img src="images/shop-street/jeu/camion-vhs.jpg?v=2" alt="Fenêtre du camion VHS" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le bonus du camion VHS</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : nouvelle rue"><img src="images/shop-street/jeu/nouvelle-rue.jpg?v=2" alt="Déblocage d'une nouvelle rue" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Une nouvelle rue débloquée</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>Les dix rues</h5>
-                                                <div class="shots portrait">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Miami Néon"><img src="images/shop-street/jeu/rue-01-miami-neon.jpg?v=2" alt="Rue 1 : Miami Néon" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>1 · Miami Néon</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Arcade City"><img src="images/shop-street/jeu/rue-02-arcade-city.jpg?v=2" alt="Rue 2 : Arcade City" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>2 · Arcade City</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Hollywood VHS"><img src="images/shop-street/jeu/rue-03-hollywood-vhs.jpg?v=2" alt="Rue 3 : Hollywood VHS" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>3 · Hollywood VHS</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Tokyo Pop"><img src="images/shop-street/jeu/rue-04-tokyo-pop.jpg?v=2" alt="Rue 4 : Tokyo Pop" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>4 · Tokyo Pop</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Rock Boulevard"><img src="images/shop-street/jeu/rue-05-rock-boulevard.jpg?v=2" alt="Rue 5 : Rock Boulevard" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>5 · Rock Boulevard</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Aérobic Beach"><img src="images/shop-street/jeu/rue-06-aerobic-beach.jpg?v=2" alt="Rue 6 : Aérobic Beach" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>6 · Aérobic Beach</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Ski Fluo"><img src="images/shop-street/jeu/rue-07-ski-fluo.jpg?v=2" alt="Rue 7 : Ski Fluo" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>7 · Ski Fluo</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Rétro-Futur"><img src="images/shop-street/jeu/rue-08-retro-futur.jpg?v=2" alt="Rue 8 : Rétro-Futur" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>8 · Rétro-Futur</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Station Lunaire"><img src="images/shop-street/jeu/rue-09-station-lunaire.jpg?v=2" alt="Rue 9 : Station Lunaire" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>9 · Station Lunaire</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Wall Street Yuppie"><img src="images/shop-street/jeu/rue-10-wall-street.jpg?v=2" alt="Rue 10 : Wall Street Yuppie" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>10 · Wall Street Yuppie</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>Menus et fonctionnalités</h5>
-                                                <div class="shots portrait">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : menu boutiques"><img src="images/shop-street/jeu/menu-boutiques.jpg?v=2" alt="Menu des boutiques" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Toutes les boutiques et leurs revenus</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : menu boosts"><img src="images/shop-street/jeu/menu-boosts.jpg?v=2" alt="Menu des boosts" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Boosts, amélioration gratuite et camion</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : carte"><img src="images/shop-street/jeu/menu-carte.jpg?v=2" alt="Carte des rues" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>La carte des rues</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : réglages"><img src="images/shop-street/jeu/menu-reglages.jpg?v=2" alt="Réglages : son, vibrations, langue" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Réglages : son, vibrations, langue, confidentialité</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : amélioration gratuite"><img src="images/shop-street/jeu/amelioration-gratuite.jpg?v=2" alt="Choix de la boutique pour l'amélioration gratuite" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Choisir la boutique qui reçoit +5 niveaux</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : objectif final"><img src="images/shop-street/jeu/objectif-final.jpg?v=2" alt="Objectif final : toutes les boutiques au niveau 25" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>L'objectif final : 65 boutiques au niveau 25</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : Magnat"><img src="images/shop-street/jeu/magnat.jpg?v=2" alt="Titre de Magnat de Shop Street" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le titre de Magnat de Shop Street</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : version anglaise"><img src="images/shop-street/jeu/anglais.jpg?v=2" alt="Le jeu en anglais" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le jeu en anglais</figcaption></figure>
-                                                </div>
+                                            <h4>En images</h4>
+                                            <div class="shots portrait">
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : Miami Néon"><img src="images/shop-street/jeu/rue-01-miami-neon.jpg?v=2" alt="Rue 1 : Miami Néon" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Rue Miami Néon</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : Tokyo Pop"><img src="images/shop-street/jeu/rue-04-tokyo-pop.jpg?v=2" alt="Rue 4 : Tokyo Pop" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Rue Tokyo Pop</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : Ski Fluo"><img src="images/shop-street/jeu/rue-07-ski-fluo.jpg?v=2" alt="Rue 7 : Ski Fluo" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Rue Ski Fluo</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : Station Lunaire"><img src="images/shop-street/jeu/rue-09-station-lunaire.jpg?v=2" alt="Rue 9 : Station Lunaire" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Rue Station Lunaire</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : carte"><img src="images/shop-street/jeu/menu-carte.jpg?v=2" alt="Carte des rues" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>La carte des rues</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : Magnat"><img src="images/shop-street/jeu/magnat.jpg?v=2" alt="Titre de Magnat de Shop Street" width="480" height="853" loading="lazy" decoding="async"></button><figcaption>Le titre de Magnat de Shop Street</figcaption></figure>
                                             </div>
                                         </div>
 
@@ -2853,14 +2778,11 @@
 
                                         <div class="sheet-highlights">
                                             <div class="highlights landscape">
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Vue du village avec ses bâtiments et villageois"><img src="images/haubeolia/jeu/village.jpg" alt="Vue du village avec ses bâtiments et villageois" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Le village la nuit, éclairé par le feu de camp"><img src="images/haubeolia/jeu/nuit.jpg" alt="Le village la nuit, éclairé par le feu de camp" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Menu de la scierie"><img src="images/haubeolia/jeu/menu-scierie.jpg" alt="Menu de la scierie" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Fiche du villageois Bertrand"><img src="images/haubeolia/jeu/fiche-villageois.jpg" alt="Fiche du villageois Bertrand" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Arbre de compétences"><img src="images/haubeolia/jeu/arbre-competences.jpg" alt="Arbre de compétences" loading="lazy" decoding="async"></button>
-                                                <button class="gallery-image" type="button" aria-label="Agrandir : Menu de construction"><img src="images/haubeolia/jeu/menu-construction.jpg" alt="Menu de construction" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : le village"><img src="images/haubeolia/jeu/village.jpg" alt="Vue du village avec ses bâtiments et villageois" width="1280" height="720" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : scierie"><img src="images/haubeolia/jeu/menu-scierie.jpg" alt="Menu de la scierie" width="1280" height="720" loading="lazy" decoding="async"></button>
+                                                <button class="gallery-image" type="button" aria-label="Agrandir : fiche de Bertrand"><img src="images/haubeolia/jeu/fiche-villageois.jpg" alt="Fiche du villageois Bertrand" width="1280" height="720" loading="lazy" decoding="async"></button>
                                             </div>
-                                            <a class="see-all" href="#galerie-haubeolia">Voir les 24 captures</a>
+                                            <a class="see-all" href="#galerie-haubeolia">Voir les 6 captures</a>
                                         </div>
 
                                         <div class="sheet-section">
@@ -2896,55 +2818,14 @@
                                         </div>
 
                                         <div class="sheet-section sheet-gallery" id="galerie-haubeolia">
-                                            <h4>Galerie complète</h4>
-                                            <p class="section-intro">Captures d'une partie en cours. Cliquez pour agrandir et faire défiler.</p>
-
-                                            <div class="gallery-group">
-                                                <h5>Le village</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : écran titre"><img src="images/haubeolia/jeu/titre.jpg" alt="Écran titre d'Haubéolia" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Écran titre</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : le village"><img src="images/haubeolia/jeu/village.jpg" alt="Vue du village avec ses bâtiments et villageois" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le village : scierie, moulin, tentes et feu de camp</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : centre du village"><img src="images/haubeolia/jeu/village-centre.jpg" alt="Le centre du village" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le centre du village au bord de la rivière</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : crépuscule"><img src="images/haubeolia/jeu/crepuscule.jpg" alt="Le village au crépuscule" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le crépuscule</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : nuit"><img src="images/haubeolia/jeu/nuit.jpg" alt="Le village la nuit, éclairé par le feu de camp" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La nuit, éclairée par le feu de camp</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>Les bâtiments</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : scierie"><img src="images/haubeolia/jeu/menu-scierie.jpg" alt="Menu de la scierie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La scierie : envoyer des villageois produire du bois</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : boulangerie"><img src="images/haubeolia/jeu/menu-boulangerie.jpg" alt="Menu de la boulangerie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La boulangerie transforme la farine en pain</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : moulin"><img src="images/haubeolia/jeu/menu-moulin.jpg" alt="Menu du moulin" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le moulin transforme le blé en farine</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : champ"><img src="images/haubeolia/jeu/menu-champ.jpg" alt="Menu du champ" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le champ de blé</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : carrière"><img src="images/haubeolia/jeu/menu-carriere.jpg" alt="Menu de la carrière" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La carrière de pierre</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : puits"><img src="images/haubeolia/jeu/menu-puits.jpg" alt="Menu du puits" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le puits</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : réserve"><img src="images/haubeolia/jeu/menu-reserve.jpg" alt="Menu de la réserve et des stocks" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La réserve : stocks et capacités</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : tente"><img src="images/haubeolia/jeu/menu-tente.jpg" alt="Menu d'une tente et de son habitant" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Une tente et son habitant</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : construction"><img src="images/haubeolia/jeu/menu-construction.jpg" alt="Menu de construction" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le menu de construction : bâtiments et décorations</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>Les villageois</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : fiche de Bertrand"><img src="images/haubeolia/jeu/fiche-villageois.jpg" alt="Fiche du villageois Bertrand" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Fiche d'un villageois : compétences et affinités</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : fiche de Béatrice"><img src="images/haubeolia/jeu/fiche-villageois-2.jpg" alt="Fiche de la villageoise Béatrice" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Chaque villageois a son propre profil</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : liste des villageois"><img src="images/haubeolia/jeu/liste-villageois.jpg" alt="Liste de tous les villageois" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Tous les villageois et leurs compétences</figcaption></figure>
-                                                </div>
-                                            </div>
-
-                                            <div class="gallery-group">
-                                                <h5>Progression et vie du village</h5>
-                                                <div class="shots landscape">
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : arbre de compétences"><img src="images/haubeolia/jeu/arbre-competences.jpg" alt="Arbre de compétences" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'arbre de compétences</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : feu de camp"><img src="images/haubeolia/jeu/feu-de-camp.jpg" alt="Menu du feu de camp" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le feu de camp : repas partagé et veillée</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : objectifs"><img src="images/haubeolia/jeu/objectifs.jpg" alt="Objectifs du jour" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Les objectifs du jour et les demandes des villageois</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : collection"><img src="images/haubeolia/jeu/collection.jpg" alt="Album de collection" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'album de collection</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : journal"><img src="images/haubeolia/jeu/journal.jpg" alt="Journal du village" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le journal du village</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : carnet d'Aube"><img src="images/haubeolia/jeu/carnet.jpg" alt="Le Carnet d'Aube" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le Carnet d'Aube, fil de l'histoire</figcaption></figure>
-                                                    <figure><button class="gallery-image" type="button" aria-label="Agrandir : paramètres"><img src="images/haubeolia/jeu/parametres.jpg" alt="Paramètres et sauvegardes" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Paramètres, langue et emplacements de sauvegarde</figcaption></figure>
-                                                </div>
+                                            <h4>En images</h4>
+                                            <div class="shots landscape">
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : le village"><img src="images/haubeolia/jeu/village.jpg" alt="Vue du village avec ses bâtiments et villageois" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le village : scierie, moulin, tentes et feu de camp</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : scierie"><img src="images/haubeolia/jeu/menu-scierie.jpg" alt="Menu de la scierie" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La scierie : envoyer des villageois produire du bois</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : fiche de Bertrand"><img src="images/haubeolia/jeu/fiche-villageois.jpg" alt="Fiche du villageois Bertrand" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Fiche d'un villageois : compétences et affinités</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : nuit"><img src="images/haubeolia/jeu/nuit.jpg" alt="Le village la nuit, éclairé par le feu de camp" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>La nuit, éclairée par le feu de camp</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : arbre de compétences"><img src="images/haubeolia/jeu/arbre-competences.jpg" alt="Arbre de compétences" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>L'arbre de compétences</figcaption></figure>
+                                                <figure><button class="gallery-image" type="button" aria-label="Agrandir : construction"><img src="images/haubeolia/jeu/menu-construction.jpg" alt="Menu de construction" width="1280" height="720" loading="lazy" decoding="async"></button><figcaption>Le menu de construction : bâtiments et décorations</figcaption></figure>
                                             </div>
                                         </div>
 
